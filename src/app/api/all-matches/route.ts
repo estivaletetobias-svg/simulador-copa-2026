@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 function getTeamCodeFromName(apiName: string): string {
   const map: Record<string, string> = {
     'Mexico': 'MEX', 'South Africa': 'RSA', 'South Korea': 'KOR', 'Czech Republic': 'CZE',
-    'Canada': 'CAN', 'Switzerland': 'SUI', 'Qatar': 'QAT', 'Bosnia': 'BIH', 'Bosnia and Herzegovina': 'BIH', 'Bosnia-Herzegovina': 'BIH',
+    'Canada': 'CAN', 'Switzerland': 'SUI', 'Qatar': 'QAT', 'Bosnia': 'BIH', 'Bosnia and Herzegovina': 'BIH', 'Bosnia & Herzegovina': 'BIH', 'Bosnia-Herzegovina': 'BIH',
     'Brazil': 'BRA', 'Morocco': 'MAR', 'Haiti': 'HAI', 'Scotland': 'SCO',
     'USA': 'USA', 'United States': 'USA', 'Paraguay': 'PAR', 'Australia': 'AUS', 'Turkey': 'TUR', 'Türkiye': 'TUR',
     'Germany': 'GER', 'Ecuador': 'ECU', 'Ivory Coast': 'CIV', "Côte d'Ivoire": 'CIV', 'Curaçao': 'CUW',

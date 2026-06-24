@@ -8,11 +8,11 @@ export const TEAMS: Team[] = [
   { id: 'KOR', name: 'Coreia do Sul', flagUrl: 'https://flagcdn.com/w40/kr.png', group: 'A' },
   { id: 'CZE', name: 'Rep. Tcheca', flagUrl: 'https://flagcdn.com/w40/cz.png', group: 'A' },
 
-  // Group B
+  // Group B (Oficial: CAN, BIH, QAT, SUI)
   { id: 'CAN', name: 'Canadá', flagUrl: 'https://flagcdn.com/w40/ca.png', group: 'B' },
-  { id: 'SUI', name: 'Suíça', flagUrl: 'https://flagcdn.com/w40/ch.png', group: 'B' },
-  { id: 'QAT', name: 'Catar', flagUrl: 'https://flagcdn.com/w40/qa.png', group: 'B' },
   { id: 'BIH', name: 'Bósnia e H.', flagUrl: 'https://flagcdn.com/w40/ba.png', group: 'B' },
+  { id: 'QAT', name: 'Catar', flagUrl: 'https://flagcdn.com/w40/qa.png', group: 'B' },
+  { id: 'SUI', name: 'Suíça', flagUrl: 'https://flagcdn.com/w40/ch.png', group: 'B' },
 
   // Group C
   { id: 'BRA', name: 'Brasil', flagUrl: 'https://flagcdn.com/w40/br.png', group: 'C' },
@@ -26,17 +26,17 @@ export const TEAMS: Team[] = [
   { id: 'AUS', name: 'Austrália', flagUrl: 'https://flagcdn.com/w40/au.png', group: 'D' },
   { id: 'TUR', name: 'Turquia', flagUrl: 'https://flagcdn.com/w40/tr.png', group: 'D' },
 
-  // Group E
+  // Group E (Oficial: GER, CUW, CIV, ECU)
   { id: 'GER', name: 'Alemanha', flagUrl: 'https://flagcdn.com/w40/de.png', group: 'E' },
-  { id: 'ECU', name: 'Equador', flagUrl: 'https://flagcdn.com/w40/ec.png', group: 'E' },
-  { id: 'CIV', name: 'Costa do Marfim', flagUrl: 'https://flagcdn.com/w40/ci.png', group: 'E' },
   { id: 'CUW', name: 'Curaçao', flagUrl: 'https://flagcdn.com/w40/cw.png', group: 'E' },
+  { id: 'CIV', name: 'Costa do Marfim', flagUrl: 'https://flagcdn.com/w40/ci.png', group: 'E' },
+  { id: 'ECU', name: 'Equador', flagUrl: 'https://flagcdn.com/w40/ec.png', group: 'E' },
 
-  // Group F
+  // Group F (Oficial: NED, JPN, SWE, TUN)
   { id: 'NED', name: 'Holanda', flagUrl: 'https://flagcdn.com/w40/nl.png', group: 'F' },
   { id: 'JPN', name: 'Japão', flagUrl: 'https://flagcdn.com/w40/jp.png', group: 'F' },
-  { id: 'TUN', name: 'Tunísia', flagUrl: 'https://flagcdn.com/w40/tn.png', group: 'F' },
   { id: 'SWE', name: 'Suécia', flagUrl: 'https://flagcdn.com/w40/se.png', group: 'F' },
+  { id: 'TUN', name: 'Tunísia', flagUrl: 'https://flagcdn.com/w40/tn.png', group: 'F' },
 
   // Group G
   { id: 'BEL', name: 'Bélgica', flagUrl: 'https://flagcdn.com/w40/be.png', group: 'G' },
@@ -44,17 +44,17 @@ export const TEAMS: Team[] = [
   { id: 'IRN', name: 'Irã', flagUrl: 'https://flagcdn.com/w40/ir.png', group: 'G' },
   { id: 'NZL', name: 'Nova Zelândia', flagUrl: 'https://flagcdn.com/w40/nz.png', group: 'G' },
 
-  // Group H
+  // Group H (Oficial: ESP, CPV, KSA, URU)
   { id: 'ESP', name: 'Espanha', flagUrl: 'https://flagcdn.com/w40/es.png', group: 'H' },
-  { id: 'URU', name: 'Uruguai', flagUrl: 'https://flagcdn.com/w40/uy.png', group: 'H' },
-  { id: 'KSA', name: 'Arábia Saudita', flagUrl: 'https://flagcdn.com/w40/sa.png', group: 'H' },
   { id: 'CPV', name: 'Cabo Verde', flagUrl: 'https://flagcdn.com/w40/cv.png', group: 'H' },
+  { id: 'KSA', name: 'Arábia Saudita', flagUrl: 'https://flagcdn.com/w40/sa.png', group: 'H' },
+  { id: 'URU', name: 'Uruguai', flagUrl: 'https://flagcdn.com/w40/uy.png', group: 'H' },
 
-  // Group I
+  // Group I (Oficial: FRA, SEN, IRQ, NOR)
   { id: 'FRA', name: 'França', flagUrl: 'https://flagcdn.com/w40/fr.png', group: 'I' },
   { id: 'SEN', name: 'Senegal', flagUrl: 'https://flagcdn.com/w40/sn.png', group: 'I' },
-  { id: 'NOR', name: 'Noruega', flagUrl: 'https://flagcdn.com/w40/no.png', group: 'I' },
   { id: 'IRQ', name: 'Iraque', flagUrl: 'https://flagcdn.com/w40/iq.png', group: 'I' },
+  { id: 'NOR', name: 'Noruega', flagUrl: 'https://flagcdn.com/w40/no.png', group: 'I' },
 
   // Group J
   { id: 'ARG', name: 'Argentina', flagUrl: 'https://flagcdn.com/w40/ar.png', group: 'J' },
