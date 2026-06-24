@@ -193,6 +193,11 @@ const applyRealResult = (homeId: string, awayId: string, homeScore: number, away
   }
 };
 
+// Grupo L
+applyRealResult('TUN', 'KSA', 2, 1);
+applyRealResult('NZL', 'COL', 0, 3);
+
+
 // Grupo I
 applyRealResult('FRA', 'IRQ', 3, 0);
 applyRealResult('NOR', 'SEN', 3, 2);
@@ -221,10 +226,10 @@ applyRealResult('CAN', 'SUI', 0, 0);
 applyRealResult('QAT', 'BIH', 0, 3);
 applyRealResult('CAN', 'QAT', 1, 2);
 applyRealResult('SUI', 'BIH', 3, 0);
-applyRealResult('BRA', 'MAR', 2, 1);
-applyRealResult('HAI', 'SCO', 1, 2);
-applyRealResult('BRA', 'HAI', 0, 2);
-applyRealResult('MAR', 'SCO', 0, 0);
+applyRealResult('BRA', 'MAR', 0, 0);
+applyRealResult('HAI', 'SCO', 0, 1);
+applyRealResult('BRA', 'HAI', 3, 0);
+applyRealResult('SCO', 'MAR', 0, 1);
 applyRealResult('USA', 'PAR', 0, 0);
 applyRealResult('AUS', 'TUR', 2, 2);
 applyRealResult('USA', 'AUS', 2, 1);
@@ -261,3 +266,19 @@ applyRealResult('ENG', 'CRO', 3, 0);
 applyRealResult('GHA', 'PAN', 2, 1);
 applyRealResult('ENG', 'GHA', 3, 0);
 applyRealResult('CRO', 'PAN', 3, 1);
+
+// Ensure all matches are sorted by date and time
+INITIAL_MATCHES.sort((a, b) => {
+  if (!a.date || !b.date) return 0;
+  // date format is DD/MM/YYYY
+  const parseDate = (d: string, t: string) => {
+    const [day, month, year] = d.split('/');
+    const timeStr = t || '00:00';
+    return new Date(`${year}-${month}-${day}T${timeStr}:00Z`).getTime();
+  };
+  return parseDate(a.date, a.time || '') - parseDate(b.date, b.time || '');
+});
+
+export const getInitialMatches = () => {
+  return INITIAL_MATCHES;
+};
