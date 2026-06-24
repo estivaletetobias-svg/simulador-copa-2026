@@ -108,6 +108,13 @@ FIFA_GRID.forEach(gridMatch => {
 const applyRealResult = (homeId: string, awayId: string, homeScore: number, awayScore: number) => {
   const match = INITIAL_MATCHES.find(m => (m.homeTeamId === homeId && m.awayTeamId === awayId) || (m.homeTeamId === awayId && m.awayTeamId === homeId));
   if (match) {
+    // Only apply if the match is scheduled on or before June 23, 2026
+    if (!match.date) return;
+    const [day, month, year] = match.date.split('/');
+    const matchDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    const cutoffDate = new Date(2026, 5, 23); // June 23, 2026
+    if (matchDate > cutoffDate) return;
+
     // Ensure home/away scores align with the match schedule orientation
     if (match.homeTeamId === homeId) {
       match.homeScore = homeScore;

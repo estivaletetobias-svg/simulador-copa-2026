@@ -116,18 +116,21 @@ export function generateRoundOf32(teams: Team[], matches: Match[]): Match[] {
   const venues = ['MetLife Stadium', 'SoFi Stadium', 'AT&T Stadium', 'Azteca', 'Hard Rock Stadium'];
   const times = ['14:00', '16:00', '19:00', '21:00'];
   
-  const createMatch = (homeId: string, awayId: string): Match => ({
-    id: `ko_32_${idCounter++}`,
-    homeTeamId: homeId,
-    awayTeamId: awayId,
-    homeScore: null,
-    awayScore: null,
-    status: 'SCHEDULED',
-    date: `28/06/2026`,
-    time: times[Math.floor(Math.random() * times.length)],
-    venue: venues[Math.floor(Math.random() * venues.length)],
-    phase: 'ROUND_OF_32'
-  });
+  const createMatch = (homeId: string, awayId: string): Match => {
+    const matchNumber = idCounter++;
+    return {
+      id: `ko_32_${matchNumber}`,
+      homeTeamId: homeId,
+      awayTeamId: awayId,
+      homeScore: null,
+      awayScore: null,
+      status: 'SCHEDULED',
+      date: `28/06/2026`,
+      time: times[matchNumber % times.length],
+      venue: venues[matchNumber % venues.length],
+      phase: 'ROUND_OF_32'
+    };
+  };
 
   // Mapeamento simplificado e dinâmico para garantir o funcionamento do Bracket
   roundOf32Matches.push(createMatch(getTeam('A', 1), best8Thirds[0]?.teamId));
@@ -180,17 +183,18 @@ export function generateNextRound(prevRoundMatches: Match[], nextPhaseName: Matc
     if (nextPhaseName === 'FINAL') date = '19/07/2026';
 
     nextRoundMatches.push({
-      id: `ko_${nextPhaseName}_${startId++}`,
+      id: `ko_${nextPhaseName}_${startId}`,
       homeTeamId: winner1,
       awayTeamId: winner2,
       homeScore: null,
       awayScore: null,
       status: 'SCHEDULED',
       date: date,
-      time: nextPhaseName === 'FINAL' ? '17:00' : times[Math.floor(Math.random() * times.length)],
-      venue: nextPhaseName === 'FINAL' ? 'MetLife Stadium, NY' : venues[Math.floor(Math.random() * venues.length)],
+      time: nextPhaseName === 'FINAL' ? '17:00' : times[startId % times.length],
+      venue: nextPhaseName === 'FINAL' ? 'MetLife Stadium, NY' : venues[startId % venues.length],
       phase: nextPhaseName
     });
+    startId++;
   }
 
   return nextRoundMatches;
