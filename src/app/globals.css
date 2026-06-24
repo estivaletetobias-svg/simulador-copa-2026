@@ -107,3 +107,201 @@ a {
   70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 194, 84, 0); }
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 194, 84, 0); }
 }
+
+/* Knockout Bracket Styles */
+.bracket-container {
+  margin-top: 4rem;
+  padding: 2rem;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #02050a 0%, #050b14 100%);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.bracket-bg-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: rgba(16,194,84,0.05);
+  filter: blur(120px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.bracket-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.bracket-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 3rem;
+  padding-bottom: 2rem;
+  scroll-snap-type: x mandatory;
+  min-height: 800px;
+}
+
+.bracket-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.bracket-scroll::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+.bracket-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+.bracket-column {
+  min-width: 260px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+
+.bracket-col-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.match-card {
+  position: relative;
+  background: linear-gradient(to bottom right, #050b14, #0a192f);
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+  min-width: 260px;
+}
+
+.match-card:hover {
+  border-color: rgba(255,255,255,0.3);
+}
+
+.match-card.finished {
+  border-color: rgba(16,194,84,0.5);
+  box-shadow: 0 0 15px rgba(16,194,84,0.2);
+}
+
+/* Connectors */
+@media (min-width: 768px) {
+  .match-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -1.5rem;
+    width: 1rem;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+  }
+}
+
+.match-team-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.match-team-row.winner {
+  background: rgba(16,194,84,0.1);
+}
+
+.match-team-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.match-flag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.match-flag-placeholder {
+  width: 24px;
+  height: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px dashed rgba(255,255,255,0.2);
+  border-radius: 2px;
+}
+
+.match-team-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 110px;
+  color: var(--color-text-secondary);
+}
+
+.match-team-name.active {
+  color: var(--color-text-primary);
+}
+
+.match-team-row.winner .match-team-name {
+  color: var(--color-green-light);
+}
+
+.match-team-row.winner .score-input {
+  border-color: var(--color-green-light);
+  color: var(--color-green-light);
+  box-shadow: 0 0 8px rgba(16,194,84,0.4);
+}
+
+.match-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  margin: 0.5rem 0;
+}
+
+.final-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background: rgba(254,223,0,0.1);
+  filter: blur(60px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.final-title {
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: var(--color-yellow);
+  text-align: center;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 15px rgba(254,223,0,0.5);
+}
