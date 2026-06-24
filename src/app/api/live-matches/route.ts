@@ -1,6 +1,16 @@
 import { NextResponse } from 'next/server';
 
-// Função para mapear o nome do time da API para as nossas siglas de 3 letras
+function parseMatchDate(dateStr: string, timeStr: string): Date {
+  // dateStr: "2026-06-23", timeStr: "20:00 UTC-6"
+  const [time, timezone] = timeStr.split(' ');
+  const sign = timezone.includes('-') ? '-' : '+';
+  const hoursOffset = parseInt(timezone.replace('UTC', '').replace('+', '').replace('-', ''), 10) || 0;
+  
+  const paddedOffset = String(hoursOffset).padStart(2, '0');
+  const isoString = `${dateStr}T${time}:00${sign}${paddedOffset}:00`;
+  return new Date(isoString);
+}
+
 function getTeamCodeFromName(apiName: string): string {
   const map: Record<string, string> = {
     'Mexico': 'MEX', 'South Africa': 'RSA', 'South Korea': 'KOR', 'Czech Republic': 'CZE',
@@ -21,46 +31,36 @@ function getTeamCodeFromName(apiName: string): string {
 
 export async function GET() {
   try {
-    // Usando a SUA chave da API-Football
-    const response = await fetch('https://v3.football.api-sports.io/fixtures?live=all&league=1&season=2026', {
-      headers: {
-        'x-apisports-key': 'ec50909d01fae2fb2fd37676eb2ed718'
-      },
-      // Cache configurado para tentar atualizar a cada 60 segundos na Vercel
+    const response = await fetch('https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json', {
       next: { revalidate: 60 }
     });
-
     const data = await response.json();
-
-    // Se a API bloquear por causa do plano gratuito, retornamos um Mock pro Radar não morrer no ambiente de teste
-    if (data.errors && data.errors.plan) {
-      console.warn("API Error:", data.errors.plan);
-      return NextResponse.json({ 
-        matches: [
-          {
-            id: "live_mock_1",
-            homeTeamId: "COL",
-            awayTeamId: "COD",
-            homeScore: 1,
-            awayScore: 0,
-            status: "IN_PROGRESS",
-            group: "",
-            phase: "GROUP"
-          }
-        ] 
-      });
-    }
-
-    const liveMatches = (data.response || []).map((item: any) => ({
-      id: `live_${item.fixture.id}`,
-      homeTeamId: getTeamCodeFromName(item.teams.home.name),
-      awayTeamId: getTeamCodeFromName(item.teams.away.name),
-      homeScore: item.goals.home ?? 0,
-      awayScore: item.goals.away ?? 0,
-      status: 'IN_PROGRESS',
-      group: '', // Radar ignora o grupo
-      phase: 'GROUP' // Ou mata-mata dependendo da data, mas pro radar não importa
-    }));
+    const now = new Date();
+    
+    // Calcula quais jogos estão acontecendo agora (entre start time e start time + 115 mins)
+    const liveMatches = data.matches.filter((m: any) => {
+      if (!m.date || !m.time) return false;
+      const startTime = parseMatchDate(m.date, m.time);
+      const endTime = new Date(startTime.getTime() + 115 * 60000); // 1h55m
+      return now >= startTime && now <= endTime;
+    }).map((m: any) => {
+      let homeScore = 0;
+      let awayScore = 0;
+      if (m.score && m.score.ft) {
+        homeScore = m.score.ft[0] || 0;
+        awayScore = m.score.ft[1] || 0;
+      }
+      return {
+        id: `live_${m.team1}_${m.team2}`,
+        homeTeamId: getTeamCodeFromName(m.team1),
+        awayTeamId: getTeamCodeFromName(m.team2),
+        homeScore,
+        awayScore,
+        status: 'IN_PROGRESS',
+        group: m.group || '',
+        phase: 'GROUP'
+      };
+    });
 
     return NextResponse.json({ matches: liveMatches });
   } catch (error) {

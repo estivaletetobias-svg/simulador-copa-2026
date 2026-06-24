@@ -7,6 +7,7 @@ import { Match } from '../types';
 import { calculateGroupStandings, generateRoundOf32, generateNextRound } from '../lib/simulator';
 import MatchCard from '../components/MatchCard';
 import GroupTable from '../components/GroupTable';
+import GroupSection from '../components/GroupSection';
 import LiveRadar from '../components/LiveRadar';
 import KnockoutBracket from '../components/KnockoutBracket';
 
@@ -135,39 +136,14 @@ export default function Home() {
               const standings = calculateGroupStandings(TEAMS, matches, group);
               
               return (
-                <div key={group} style={{ 
-                  width: '100%', 
-                  maxWidth: '1200px', 
-                  display: 'flex', 
-                  gap: '40px', 
-                  marginBottom: '60px', 
-                  flexWrap: 'wrap',
-                  justifyContent: 'center'
-                }}>
-                  
-                  <div style={{ flex: '1 1 450px', maxWidth: '550px' }}>
-                    <h3 style={{ marginBottom: '20px', color: 'var(--color-text-secondary)', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>
-                      Jogos - Grupo {group}
-                    </h3>
-                    {groupMatches.map(m => (
-                      <MatchCard 
-                        key={m.id} 
-                        match={m} 
-                        homeTeam={TEAMS.find(t => t.id === m.homeTeamId)!} 
-                        awayTeam={TEAMS.find(t => t.id === m.awayTeamId)!}
-                        onScoreChange={handleScoreChange}
-                      />
-                    ))}
-                  </div>
-
-                  <div style={{ flex: '1 1 450px', maxWidth: '550px' }}>
-                    <GroupTable 
-                      groupName={group} 
-                      standings={standings} 
-                      teams={TEAMS} 
-                    />
-                  </div>
-                </div>
+                <GroupSection
+                  key={group}
+                  group={group}
+                  groupMatches={groupMatches}
+                  standings={standings}
+                  teams={TEAMS}
+                  onScoreChange={handleScoreChange}
+                />
               );
             })}
           </div>
