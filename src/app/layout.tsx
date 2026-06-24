@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://simulador-copa-2026.vercel.app'),
   title: 'Simulador Copa do Mundo 2026',
   description: 'Faça suas previsões, simule resultados e descubra quem vai ser o Campeão da Copa de 2026!',
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
+  appleWebApp: {
+    title: 'Simulador 2026',
+    statusBarStyle: 'black-translucent',
+  },
   openGraph: {
     title: 'Simulador Copa do Mundo 2026',
     description: 'Faça suas previsões, simule resultados e descubra quem vai ser o Campeão da Copa de 2026!',
