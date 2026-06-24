@@ -134,17 +134,8 @@ applyRealResult('POR', 'COD', 0, 0);
 applyRealResult('COL', 'UZB', 3, 0);
 applyRealResult('POR', 'UZB', 5, 0);
 
-// Ensure all matches are sorted by date and time
-INITIAL_MATCHES.sort((a, b) => {
-  if (!a.date || !b.date) return 0;
-  // date format is DD/MM/YYYY
-  const parseDate = (d: string, t: string) => {
-    const [day, month, year] = d.split('/');
-    const timeStr = t || '00:00';
-    return new Date(`${year}-${month}-${day}T${timeStr}:00Z`).getTime();
-  };
-  return parseDate(a.date, a.time || '') - parseDate(b.date, b.time || '');
-});
+// A ordem original do FIFA_GRID será preservada para evitar que os jogos de uma mesma rodada
+// apareçam fora da ordem lógica (ex: Jogo 4 antes do Jogo 3) devido a fusos horários.
 
 export const getInitialMatches = () => {
   return INITIAL_MATCHES;
