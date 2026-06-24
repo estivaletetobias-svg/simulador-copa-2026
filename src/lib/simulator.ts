@@ -112,60 +112,92 @@ export function generateRoundOf32(teams: Team[], matches: Match[]): Match[] {
     return standings[pos - 1]?.teamId;
   };
 
-  let idCounter = 1;
-  const venues = ['MetLife Stadium', 'SoFi Stadium', 'AT&T Stadium', 'Azteca', 'Hard Rock Stadium'];
-  const times = ['14:00', '16:00', '19:00', '21:00'];
-  
-  const createMatch = (homeId: string, awayId: string): Match => {
-    const matchNumber = idCounter++;
+  const getThird = () => {
+    const t = best8Thirds.shift();
+    return t ? t.teamId : null;
+  };
+
+  const formatR32Match = (idNum: number, homeId: string | null, awayId: string | null, date: string, time: string, venue: string): Match => {
     return {
-      id: `ko_32_${matchNumber}`,
+      id: `ko_32_${idNum}`,
       homeTeamId: homeId,
       awayTeamId: awayId,
       homeScore: null,
       awayScore: null,
       status: 'SCHEDULED',
-      date: `28/06/2026`,
-      time: times[matchNumber % times.length],
-      venue: venues[matchNumber % venues.length],
+      date,
+      time,
+      venue,
       phase: 'ROUND_OF_32'
     };
   };
 
-  // Mapeamento simplificado e dinâmico para garantir o funcionamento do Bracket
-  roundOf32Matches.push(createMatch(getTeam('A', 1), best8Thirds[0]?.teamId));
-  roundOf32Matches.push(createMatch(getTeam('B', 1), best8Thirds[1]?.teamId));
-  roundOf32Matches.push(createMatch(getTeam('C', 1), best8Thirds[2]?.teamId));
-  roundOf32Matches.push(createMatch(getTeam('D', 1), best8Thirds[3]?.teamId));
-  roundOf32Matches.push(createMatch(getTeam('E', 1), best8Thirds[4]?.teamId));
-  roundOf32Matches.push(createMatch(getTeam('F', 1), best8Thirds[5]?.teamId));
-  roundOf32Matches.push(createMatch(getTeam('G', 1), best8Thirds[6]?.teamId));
-  roundOf32Matches.push(createMatch(getTeam('H', 1), best8Thirds[7]?.teamId));
-
-  roundOf32Matches.push(createMatch(getTeam('I', 1), getTeam('A', 2)));
-  roundOf32Matches.push(createMatch(getTeam('J', 1), getTeam('B', 2)));
-  roundOf32Matches.push(createMatch(getTeam('K', 1), getTeam('C', 2)));
-  roundOf32Matches.push(createMatch(getTeam('L', 1), getTeam('D', 2)));
-
-  roundOf32Matches.push(createMatch(getTeam('E', 2), getTeam('F', 2)));
-  roundOf32Matches.push(createMatch(getTeam('G', 2), getTeam('H', 2)));
-  roundOf32Matches.push(createMatch(getTeam('I', 2), getTeam('J', 2)));
-  roundOf32Matches.push(createMatch(getTeam('K', 2), getTeam('L', 2)));
+  // Ordem sequencial customizada para que as chaves casem perfeitamente
+  // O vencedor do item 0 pega o vencedor do item 1
+  // Sequência: 74-77, 73-75, 83-84, 81-82, 76-78, 79-80, 86-88, 85-87
+  
+  roundOf32Matches.push(formatR32Match(74, getTeam('E', 1), getThird(), '29/06/2026', '16:30', 'Boston'));
+  roundOf32Matches.push(formatR32Match(77, getTeam('I', 1), getThird(), '30/06/2026', '17:00', 'New York/New Jersey'));
+  
+  roundOf32Matches.push(formatR32Match(73, getTeam('A', 2), getTeam('B', 2), '28/06/2026', '12:00', 'Los Angeles'));
+  roundOf32Matches.push(formatR32Match(75, getTeam('F', 1), getTeam('C', 2), '29/06/2026', '19:00', 'Monterrey'));
+  
+  roundOf32Matches.push(formatR32Match(83, getTeam('K', 2), getTeam('L', 2), '02/07/2026', '19:00', 'Houston'));
+  roundOf32Matches.push(formatR32Match(84, getTeam('H', 1), getTeam('J', 2), '02/07/2026', '12:00', 'Dallas'));
+  
+  roundOf32Matches.push(formatR32Match(81, getTeam('D', 1), getThird(), '01/07/2026', '17:00', 'San Francisco'));
+  roundOf32Matches.push(formatR32Match(82, getTeam('G', 1), getThird(), '01/07/2026', '13:00', 'Seattle'));
+  
+  roundOf32Matches.push(formatR32Match(76, getTeam('C', 1), getTeam('F', 2), '29/06/2026', '12:00', 'Houston'));
+  roundOf32Matches.push(formatR32Match(78, getTeam('E', 2), getTeam('I', 2), '30/06/2026', '12:00', 'Dallas'));
+  
+  roundOf32Matches.push(formatR32Match(79, getTeam('A', 1), getThird(), '30/06/2026', '19:00', 'Mexico City'));
+  roundOf32Matches.push(formatR32Match(80, getTeam('L', 1), getThird(), '01/07/2026', '12:00', 'Atlanta'));
+  
+  roundOf32Matches.push(formatR32Match(86, getTeam('J', 1), getTeam('H', 2), '03/07/2026', '18:00', 'Philadelphia'));
+  roundOf32Matches.push(formatR32Match(88, getTeam('D', 2), getTeam('G', 2), '03/07/2026', '13:00', 'Kansas City'));
+  
+  roundOf32Matches.push(formatR32Match(85, getTeam('B', 1), getThird(), '02/07/2026', '20:00', 'Vancouver'));
+  roundOf32Matches.push(formatR32Match(87, getTeam('K', 1), getThird(), '03/07/2026', '20:30', 'Miami'));
 
   return roundOf32Matches;
 }
 
+// Mapa de referências para os próximos jogos
+const KO_METADATA: Record<string, { idNum: number, date: string, time: string, venue: string }> = {
+  // Oitavas (89 a 96)
+  'ko_ROUND_OF_16_0': { idNum: 89, date: '04/07/2026', time: '18:00', venue: 'Philadelphia' },
+  'ko_ROUND_OF_16_1': { idNum: 90, date: '04/07/2026', time: '19:00', venue: 'Houston' },
+  'ko_ROUND_OF_16_2': { idNum: 93, date: '06/07/2026', time: '17:00', venue: 'Dallas' },
+  'ko_ROUND_OF_16_3': { idNum: 94, date: '06/07/2026', time: '19:00', venue: 'Seattle' },
+  'ko_ROUND_OF_16_4': { idNum: 91, date: '05/07/2026', time: '17:00', venue: 'New York/New Jersey' },
+  'ko_ROUND_OF_16_5': { idNum: 92, date: '05/07/2026', time: '19:00', venue: 'Mexico City' },
+  'ko_ROUND_OF_16_6': { idNum: 95, date: '07/07/2026', time: '18:00', venue: 'Atlanta' },
+  'ko_ROUND_OF_16_7': { idNum: 96, date: '07/07/2026', time: '19:00', venue: 'Vancouver' },
+  
+  // Quartas (97 a 100)
+  'ko_QUARTER_FINALS_0': { idNum: 97, date: '09/07/2026', time: '18:00', venue: 'Boston' },
+  'ko_QUARTER_FINALS_1': { idNum: 98, date: '10/07/2026', time: '19:00', venue: 'Los Angeles' },
+  'ko_QUARTER_FINALS_2': { idNum: 99, date: '11/07/2026', time: '18:00', venue: 'Miami' },
+  'ko_QUARTER_FINALS_3': { idNum: 100, date: '11/07/2026', time: '19:00', venue: 'Kansas City' },
+
+  // Semis (101 a 102)
+  'ko_SEMI_FINALS_0': { idNum: 101, date: '14/07/2026', time: '18:00', venue: 'Dallas' },
+  'ko_SEMI_FINALS_1': { idNum: 102, date: '15/07/2026', time: '19:00', venue: 'Atlanta' },
+
+  // Final (104)
+  'ko_FINAL_0': { idNum: 104, date: '19/07/2026', time: '15:00', venue: 'New York/New Jersey' }
+};
+
 export function generateNextRound(prevRoundMatches: Match[], nextPhaseName: Match['phase'], startId: number): Match[] {
   const nextRoundMatches: Match[] = [];
   
-  // Avança de 2 em 2 (vencedor do jogo 1 contra vencedor do jogo 2)
   for (let i = 0; i < prevRoundMatches.length; i += 2) {
     const m1 = prevRoundMatches[i];
     const m2 = prevRoundMatches[i + 1];
 
     let winner1: string | null = null;
     if (m1 && m1.homeScore !== null && m1.awayScore !== null) {
-      // Empates no mata-mata precisarão ser evitados pela UI ou considerados como o primeiro no if
       winner1 = m1.homeScore > m1.awayScore ? m1.homeTeamId : (m1.awayScore > m1.homeScore ? m1.awayTeamId : null);
     }
     
@@ -174,27 +206,21 @@ export function generateNextRound(prevRoundMatches: Match[], nextPhaseName: Matc
       winner2 = m2.homeScore > m2.awayScore ? m2.homeTeamId : (m2.awayScore > m2.homeScore ? m2.awayTeamId : null);
     }
 
-    const venues = ['MetLife Stadium', 'SoFi Stadium', 'AT&T Stadium', 'Azteca', 'Hard Rock Stadium'];
-    const times = ['14:00', '16:00', '19:00', '21:00'];
-    
-    let date = '04/07/2026';
-    if (nextPhaseName === 'QUARTER_FINALS') date = '09/07/2026';
-    if (nextPhaseName === 'SEMI_FINALS') date = '14/07/2026';
-    if (nextPhaseName === 'FINAL') date = '19/07/2026';
+    const keyId = `ko_${nextPhaseName}_${i / 2}`;
+    const meta = KO_METADATA[keyId] || { idNum: 0, date: 'TBD', time: 'TBD', venue: 'TBD' };
 
     nextRoundMatches.push({
-      id: `ko_${nextPhaseName}_${startId}`,
+      id: `ko_${meta.idNum}`, // Usa o número oficial do jogo (89, 90, etc)
       homeTeamId: winner1,
       awayTeamId: winner2,
       homeScore: null,
       awayScore: null,
       status: 'SCHEDULED',
-      date: date,
-      time: nextPhaseName === 'FINAL' ? '17:00' : times[startId % times.length],
-      venue: nextPhaseName === 'FINAL' ? 'MetLife Stadium, NY' : venues[startId % venues.length],
+      date: meta.date,
+      time: meta.time,
+      venue: meta.venue,
       phase: nextPhaseName
     });
-    startId++;
   }
 
   return nextRoundMatches;
