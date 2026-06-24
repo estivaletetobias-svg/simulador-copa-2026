@@ -159,8 +159,8 @@ export const FIFA_GRID: FifaGridMatch[] = [
     "homePos": 4,
     "awayPos": 1,
     "date": "25/06/2026",
-    "time": "17:00",
-    "venue": "Los Angeles Stadium, Inglewood"
+    "time": "19:00",
+    "venue": "Miami Stadium, Miami Gardens"
   },
   {
     "group": "C",
@@ -168,7 +168,7 @@ export const FIFA_GRID: FifaGridMatch[] = [
     "homePos": 2,
     "awayPos": 3,
     "date": "25/06/2026",
-    "time": "17:00",
+    "time": "19:00",
     "venue": "Boston Stadium, Foxborough"
   },
   {
