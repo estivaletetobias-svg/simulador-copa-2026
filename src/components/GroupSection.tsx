@@ -17,13 +17,18 @@ export default function GroupSection({ group, groupMatches, standings, teams, on
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    let lastIsMobile = window.innerWidth <= 1024;
+    setIsMobile(lastIsMobile);
+    setIsOpen(!lastIsMobile);
+
     const checkMobile = () => {
-      const mobile = window.innerWidth <= 1024;
-      setIsMobile(mobile);
-      if (!mobile) setIsOpen(true);
-      else setIsOpen(false);
+      const currentIsMobile = window.innerWidth <= 1024;
+      if (currentIsMobile !== lastIsMobile) {
+        setIsMobile(currentIsMobile);
+        setIsOpen(!currentIsMobile);
+        lastIsMobile = currentIsMobile;
+      }
     };
-    checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);

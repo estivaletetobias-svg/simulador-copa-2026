@@ -140,4 +140,18 @@
     border-left: none;
     border-top: 1px solid var(--color-border);
   }
+  .navSeparator {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-secondary);
+    font-size: 1.2rem;
+    padding: 0 0.5rem;
+    opacity: 0.5;
+  }
+}
+
+@media (min-width: 1025px) {
+  .navSeparator {
+    display: none;
+  }
 }

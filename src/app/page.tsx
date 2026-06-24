@@ -112,6 +112,9 @@ export default function Home() {
           >
             Fase de Grupos
           </button>
+          
+          <span className={styles.navSeparator}>➔</span>
+
           <button 
             className={`${styles.navButton} ${activeTab === 'knockout' ? styles.navButtonActive : ''}`}
             onClick={() => setActiveTab('knockout')}

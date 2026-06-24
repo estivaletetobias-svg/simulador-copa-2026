@@ -324,3 +324,99 @@ a {
   letter-spacing: 0.1em;
   text-shadow: 0 0 15px rgba(254,223,0,0.5);
 }
+
+/* Match Card Responive Layout */
+.mc-panel {
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mc-info {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  text-align: center;
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.mc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.mc-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 38%;
+}
+
+.mc-team-home {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.mc-team-away {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.mc-team-name {
+  font-weight: 600;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mc-flag {
+  width: 32px;
+  height: 24px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.mc-score-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 24%;
+}
+
+.mc-score-divider {
+  color: var(--color-text-secondary);
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .mc-panel {
+    padding: 12px 10px;
+  }
+  .mc-team {
+    gap: 8px;
+  }
+  .mc-team-name {
+    font-size: 0.85rem;
+    line-height: 1.1;
+  }
+  .mc-score-area {
+    gap: 4px;
+  }
+  .mc-info {
+    font-size: 11px;
+    gap: 8px;
+  }
+  .mc-flag {
+    width: 24px;
+    height: 18px;
+  }
+}

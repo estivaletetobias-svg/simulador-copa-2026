@@ -24,53 +24,53 @@ export default function MatchCard({ match, homeTeam, awayTeam, onScoreChange }: 
   };
 
   return (
-    <div className="glass-panel" style={{ padding: '16px', marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+    <div className="glass-panel mc-panel">
       
       {/* Match Info (Venue, Date, Time) */}
       {(match.venue || match.date || match.time) && (
-        <div style={{ fontSize: '12px', color: 'var(--color-text-secondary)', textAlign: 'center', letterSpacing: '0.05em' }}>
+        <div className="mc-info">
           {match.venue && <span>📍 {match.venue}</span>}
-          {match.date && <span style={{ marginLeft: '12px' }}>📅 {match.date}</span>}
-          {match.time && <span style={{ marginLeft: '6px' }}>às {match.time} (BRT)</span>}
+          {match.date && <span>📅 {match.date}</span>}
+          {match.time && <span>às {match.time} (BRT)</span>}
         </div>
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="mc-row">
         {/* Home Team */}
-      <div style={{ display: 'flex', alignItems: 'center', width: '35%', justifyContent: 'flex-end', gap: '12px' }}>
-        <span style={{ fontWeight: '600' }}>{homeTeam.name}</span>
-        <img src={homeTeam.flagUrl} alt={`Bandeira ${homeTeam.name}`} width={32} height={24} style={{ borderRadius: '4px' }} />
-      </div>
+        <div className="mc-team mc-team-home">
+          <span className="mc-team-name">{homeTeam.name}</span>
+          <img src={homeTeam.flagUrl} alt={`Bandeira ${homeTeam.name}`} className="mc-flag" />
+        </div>
 
-      {/* Score / Inputs */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '30%', justifyContent: 'center' }}>
-        <input 
-          type="number" 
-          className="score-input" 
-          value={match.homeScore ?? ''} 
-          onChange={handleHomeChange}
-          readOnly={isReadOnly}
-          min="0"
-          max="99"
-        />
-        <span style={{ color: 'var(--color-text-secondary)', fontWeight: 'bold' }}>X</span>
-        <input 
-          type="number" 
-          className="score-input" 
-          value={match.awayScore ?? ''} 
-          onChange={handleAwayChange}
-          readOnly={isReadOnly}
-          min="0"
-          max="99"
-        />
-      </div>
+        {/* Score / Inputs */}
+        <div className="mc-score-area">
+          <input 
+            type="number" 
+            className="score-input" 
+            value={match.homeScore ?? ''} 
+            onChange={handleHomeChange}
+            readOnly={isReadOnly}
+            min="0"
+            max="99"
+          />
+          <span className="mc-score-divider">X</span>
+          <input 
+            type="number" 
+            className="score-input" 
+            value={match.awayScore ?? ''} 
+            onChange={handleAwayChange}
+            readOnly={isReadOnly}
+            min="0"
+            max="99"
+          />
+        </div>
 
-      {/* Away Team */}
-      <div style={{ display: 'flex', alignItems: 'center', width: '35%', gap: '12px' }}>
-        <img src={awayTeam.flagUrl} alt={`Bandeira ${awayTeam.name}`} width={32} height={24} style={{ borderRadius: '4px' }} />
-        <span style={{ fontWeight: '600' }}>{awayTeam.name}</span>
+        {/* Away Team */}
+        <div className="mc-team mc-team-away">
+          <img src={awayTeam.flagUrl} alt={`Bandeira ${awayTeam.name}`} className="mc-flag" />
+          <span className="mc-team-name">{awayTeam.name}</span>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
