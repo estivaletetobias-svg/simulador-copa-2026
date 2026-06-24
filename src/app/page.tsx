@@ -10,9 +10,32 @@ import GroupTable from '../components/GroupTable';
 import GroupSection from '../components/GroupSection';
 import LiveRadar from '../components/LiveRadar';
 import KnockoutBracket from '../components/KnockoutBracket';
+import confetti from 'canvas-confetti';
 
 export default function Home() {
   const [matches, setMatches] = useState(INITIAL_MATCHES);
+  const [activeTab, setActiveTab] = useState<'groups' | 'knockout'>('groups');
+  const [clickCount, setClickCount] = useState(0);
+  const [isMariaEdition, setIsMariaEdition] = useState(false);
+
+  const handleTitleClick = () => {
+    const newCount = clickCount + 1;
+    setClickCount(newCount);
+    
+    if (newCount === 5) {
+      setIsMariaEdition(true);
+      confetti({
+        particleCount: 200,
+        spread: 90,
+        origin: { y: 0.3 },
+        colors: ['#009B3A', '#FEDF00', '#002776']
+      });
+      setTimeout(() => {
+        setIsMariaEdition(false);
+        setClickCount(0);
+      }, 10000);
+    }
+  };
 
   useEffect(() => {
     // Sincronizar todos os jogos já finalizados da API openfootball
@@ -99,7 +122,6 @@ export default function Home() {
   };
 
   const groups = Array.from(new Set(TEAMS.map(t => t.group))).sort();
-  const [activeTab, setActiveTab] = useState<'groups' | 'knockout'>('groups');
 
   return (
     <div className={styles.dashboard}>
@@ -126,7 +148,13 @@ export default function Home() {
 
       <main className={styles.mainContent}>
         <header className={styles.header}>
-          <h1 className="text-gradient">Simulador Oficial</h1>
+          <h1 
+            className="text-gradient" 
+            onClick={handleTitleClick}
+            style={{ cursor: 'pointer', userSelect: 'none' }}
+          >
+            {isMariaEdition ? "Simulador Oficial - Maria's Edition 🌟" : "Simulador Oficial"}
+          </h1>
           <p className={styles.subtitle}>
             {activeTab === 'groups' ? 'Fase de Grupos' : 'Fase Eliminatória'}
           </p>
@@ -157,6 +185,22 @@ export default function Home() {
             <KnockoutBracket teams={TEAMS} matches={knockoutMatches} onScoreChange={handleScoreChange} />
           </div>
         )}
+
+        {/* Footer Dedication */}
+        <footer style={{ marginTop: '4rem', padding: '2rem 0', textAlign: 'center', color: 'var(--color-text-secondary)', borderTop: '1px solid var(--color-card-border)', width: '100%' }}>
+          <p style={{ fontSize: '0.9rem', letterSpacing: '0.05em' }}>
+            Desenvolvido e arquitetado por <span style={{ fontWeight: 600, color: 'var(--color-text-primary)' }}>Tobias & Maria</span>
+          </p>
+          <button 
+            onClick={() => alert('Supervisora Oficial de Testes da Copa de 2026 👧🏽⚽')}
+            style={{ 
+              background: 'none', border: 'none', color: 'var(--color-green-light)', 
+              fontSize: '0.8rem', marginTop: '0.5rem', cursor: 'pointer', textDecoration: 'underline' 
+            }}
+          >
+            Sobre a equipe
+          </button>
+        </footer>
       </main>
 
       <aside className={styles.rightPanel}>

@@ -127,9 +127,45 @@ export default function KnockoutBracket({ teams, matches, onScoreChange }: Props
         <div className="bracket-column">
           <div className="final-glow"></div>
           <h3 className="final-title">GRANDE FINAL</h3>
-          {matches.filter(m => m.phase === 'FINAL').map(m => (
-            <div key={m.id} className="bracket-cell">{renderMatch(m)}</div>
-          ))}
+          {matches.filter(m => m.phase === 'FINAL').map(m => {
+            let champion = null;
+            if (m.homeScore !== null && m.awayScore !== null && m.homeScore !== m.awayScore) {
+              const championId = m.homeScore > m.awayScore ? m.homeTeamId : m.awayTeamId;
+              champion = teams.find(t => t.id === championId);
+            }
+            
+            return (
+              <React.Fragment key={m.id}>
+                <div className="bracket-cell">{renderMatch(m)}</div>
+                
+                {champion && (
+                  <div style={{ marginTop: '2rem', textAlign: 'center', background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(254,223,0,0.3)', zIndex: 10 }}>
+                    <p style={{ color: 'var(--color-yellow)', fontWeight: 700, fontSize: '1.2rem', marginBottom: '0.5rem' }}>{champion.name} Campeão!</p>
+                    <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBottom: '1rem' }}>
+                      ✓ Simulação validada pelo sistema Tobias-Maria Tech.
+                    </p>
+                    <a 
+                      href={`https://wa.me/?text=O%20${champion.name}%20vai%20ser%20o%20Campe%C3%A3o%20da%20Copa%202026%21%20%F0%9F%8F%86%20Fiz%20minha%20simula%C3%A7%C3%A3o%20no%20site%20que%20o%20pai%20da%20Maria%20construiu%21%20Fa%C3%A7a%20o%20seu%20palpite%20tamb%C3%A9m%21`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ 
+                        display: 'inline-block',
+                        background: '#25D366', 
+                        color: '#fff', 
+                        padding: '8px 16px', 
+                        borderRadius: '20px', 
+                        fontSize: '0.9rem',
+                        fontWeight: 600,
+                        textDecoration: 'none'
+                      }}
+                    >
+                      Compartilhar no WhatsApp
+                    </a>
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
 
       </div>
