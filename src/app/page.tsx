@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import { TEAMS, INITIAL_MATCHES } from '../lib/data';
 import { Match } from '../types';
-import { calculateGroupStandings, generateRoundOf32, generateNextRound } from '../lib/simulator';
+import { calculateGroupStandings, generateRoundOf32, generateNextRound, generateThirdPlaceMatch } from '../lib/simulator';
 import MatchCard from '../components/MatchCard';
 import GroupTable from '../components/GroupTable';
 import GroupSection from '../components/GroupSection';
@@ -72,7 +72,7 @@ export default function Home() {
   const knockoutMatches = React.useMemo(() => {
     const applySavedScores = (baseMatches: Match[]) => baseMatches.map(baseMatch => {
       const savedMatch = matches.find(m => m.id === baseMatch.id);
-      return savedMatch ? { ...baseMatch, homeScore: savedMatch.homeScore, awayScore: savedMatch.awayScore } : baseMatch;
+      return savedMatch ? { ...baseMatch, homeScore: savedMatch.homeScore, awayScore: savedMatch.awayScore, homePenalties: savedMatch.homePenalties, awayPenalties: savedMatch.awayPenalties } : baseMatch;
     });
 
     const r32 = applySavedScores(generateRoundOf32(TEAMS, matches));
@@ -86,10 +86,13 @@ export default function Home() {
     // Semis
     const sf = applySavedScores(generateNextRound(qf, 'SEMI_FINALS', 1));
     
+    // 3º Lugar
+    const thirdPlace = applySavedScores(generateThirdPlaceMatch(sf));
+
     // Final
     const final = applySavedScores(generateNextRound(sf, 'FINAL', 1));
 
-    return [...r32, ...r16, ...qf, ...sf, ...final];
+    return [...r32, ...r16, ...qf, ...sf, ...thirdPlace, ...final];
   }, [matches]);
 
   const handleScoreChange = (matchId: string, homeScore: number | null, awayScore: number | null) => {
@@ -102,6 +105,20 @@ export default function Home() {
       const koMatch = knockoutMatches.find(m => m.id === matchId);
       if (koMatch) {
         return [...prev, { ...koMatch, homeScore, awayScore }];
+      }
+      return prev;
+    });
+  };
+
+  const handlePenaltyChange = (matchId: string, homePenalties: number | null, awayPenalties: number | null) => {
+    setMatches(prev => {
+      const exists = prev.find(m => m.id === matchId);
+      if (exists) {
+        return prev.map(m => m.id === matchId ? { ...m, homePenalties, awayPenalties } : m);
+      }
+      const koMatch = knockoutMatches.find(m => m.id === matchId);
+      if (koMatch) {
+        return [...prev, { ...koMatch, homePenalties, awayPenalties }];
       }
       return prev;
     });
@@ -182,7 +199,12 @@ export default function Home() {
 
         {activeTab === 'knockout' && (
           <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
-            <KnockoutBracket teams={TEAMS} matches={knockoutMatches} onScoreChange={handleScoreChange} />
+            <KnockoutBracket 
+              teams={TEAMS} 
+              matches={knockoutMatches} 
+              onScoreChange={handleScoreChange} 
+              onPenaltyChange={handlePenaltyChange} 
+            />
           </div>
         )}
 

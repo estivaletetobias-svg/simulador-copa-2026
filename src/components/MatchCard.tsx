@@ -6,9 +6,10 @@ interface Props {
   homeTeam: Team;
   awayTeam: Team;
   onScoreChange: (matchId: string, homeScore: number | null, awayScore: number | null) => void;
+  onPenaltyChange?: (matchId: string, homePenalties: number | null, awayPenalties: number | null) => void;
 }
 
-export default function MatchCard({ match, homeTeam, awayTeam, onScoreChange }: Props) {
+export default function MatchCard({ match, homeTeam, awayTeam, onScoreChange, onPenaltyChange }: Props) {
   const isReadOnly = match.status === 'FINISHED' || match.status === 'IN_PROGRESS';
 
   const handleHomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +72,30 @@ export default function MatchCard({ match, homeTeam, awayTeam, onScoreChange }: 
           <span className="mc-team-name">{awayTeam.name}</span>
         </div>
       </div>
+
+      {/* Penalties Area */}
+      {match.phase !== 'GROUP' && match.homeScore !== null && match.homeScore === match.awayScore && onPenaltyChange && (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginTop: '4px', fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>
+          <span>Pênaltis:</span>
+          <input 
+            type="number" 
+            style={{ width: '30px', padding: '2px', textAlign: 'center', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--color-card-border)', color: 'white', borderRadius: '4px' }}
+            value={match.homePenalties ?? ''} 
+            onChange={(e) => onPenaltyChange(match.id, e.target.value ? parseInt(e.target.value, 10) : null, match.awayPenalties ?? null)}
+            readOnly={isReadOnly}
+            min="0"
+          />
+          <span>X</span>
+          <input 
+            type="number" 
+            style={{ width: '30px', padding: '2px', textAlign: 'center', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--color-card-border)', color: 'white', borderRadius: '4px' }}
+            value={match.awayPenalties ?? ''} 
+            onChange={(e) => onPenaltyChange(match.id, match.homePenalties ?? null, e.target.value ? parseInt(e.target.value, 10) : null)}
+            readOnly={isReadOnly}
+            min="0"
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -6,9 +6,10 @@ interface Props {
   teams: Team[];
   matches: Match[];
   onScoreChange: (matchId: string, homeScore: number | null, awayScore: number | null) => void;
+  onPenaltyChange?: (matchId: string, homePenalties: number | null, awayPenalties: number | null) => void;
 }
 
-export default function KnockoutBracket({ teams, matches, onScoreChange }: Props) {
+export default function KnockoutBracket({ teams, matches, onScoreChange, onPenaltyChange }: Props) {
   const getTeam = (teamId: string | null): Team | null => {
     if (!teamId) return null;
     return teams.find(t => t.id === teamId) || null;
@@ -82,6 +83,29 @@ export default function KnockoutBracket({ teams, matches, onScoreChange }: Props
           />
         </div>
 
+        {/* Penalties Area */}
+        {match.phase !== 'GROUP' && match.homeScore !== null && match.homeScore === match.awayScore && onPenaltyChange && (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', padding: '8px', fontSize: '0.8rem', color: 'var(--color-text-secondary)', borderTop: '1px solid var(--color-card-border)' }}>
+            <span>Pênaltis:</span>
+            <input 
+              type="number" 
+              style={{ width: '30px', padding: '2px', textAlign: 'center', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--color-card-border)', color: 'white', borderRadius: '4px' }}
+              value={match.homePenalties ?? ''} 
+              onChange={(e) => onPenaltyChange(match.id, e.target.value ? parseInt(e.target.value, 10) : null, match.awayPenalties ?? null)}
+              disabled={!homeTeam || !awayTeam}
+              min="0"
+            />
+            <span>X</span>
+            <input 
+              type="number" 
+              style={{ width: '30px', padding: '2px', textAlign: 'center', background: 'rgba(0,0,0,0.3)', border: '1px solid var(--color-card-border)', color: 'white', borderRadius: '4px' }}
+              value={match.awayPenalties ?? ''} 
+              onChange={(e) => onPenaltyChange(match.id, match.homePenalties ?? null, e.target.value ? parseInt(e.target.value, 10) : null)}
+              disabled={!homeTeam || !awayTeam}
+              min="0"
+            />
+          </div>
+        )}
       </div>
     );
   };
@@ -129,30 +153,38 @@ export default function KnockoutBracket({ teams, matches, onScoreChange }: Props
           <h3 className="final-title">GRANDE FINAL</h3>
           {matches.filter(m => m.phase === 'FINAL').map(m => {
             let champion = null;
-            if (m.homeScore !== null && m.awayScore !== null && m.homeScore !== m.awayScore) {
-              const championId = m.homeScore > m.awayScore ? m.homeTeamId : m.awayTeamId;
-              champion = teams.find(t => t.id === championId);
+            if (m.homeScore !== null && m.awayScore !== null) {
+              if (m.homeScore > m.awayScore) champion = teams.find(t => t.id === m.homeTeamId);
+              else if (m.awayScore > m.homeScore) champion = teams.find(t => t.id === m.awayTeamId);
+              else if (m.homePenalties !== undefined && m.awayPenalties !== undefined && m.homePenalties !== null && m.awayPenalties !== null) {
+                if (m.homePenalties > m.awayPenalties) champion = teams.find(t => t.id === m.homeTeamId);
+                else if (m.awayPenalties > m.homePenalties) champion = teams.find(t => t.id === m.awayTeamId);
+              }
             }
             
             return (
               <React.Fragment key={m.id}>
-                <div className="bracket-cell">{renderMatch(m)}</div>
+                <div className="bracket-cell" style={{ marginBottom: '1rem' }}>{renderMatch(m)}</div>
                 
                 {champion && (
-                  <div style={{ marginTop: '2rem', textAlign: 'center', background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(254,223,0,0.3)', zIndex: 10 }}>
+                  <div style={{ marginTop: '1rem', marginBottom: '2rem', textAlign: 'center', background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(254,223,0,0.3)', zIndex: 10 }}>
                     <p style={{ color: 'var(--color-yellow)', fontWeight: 700, fontSize: '1.2rem', marginBottom: '0.5rem' }}>{champion.name} Campeão!</p>
                     <p style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)', marginBottom: '1rem' }}>
                       ✓ Simulação validada pelo sistema Tobias-Maria Tech.
                     </p>
-                    <a 
-                      href={`https://wa.me/?text=O%20${champion.name}%20vai%20ser%20o%20Campe%C3%A3o%20da%20Copa%202026%21%20%F0%9F%8F%86%20Fiz%20minha%20simula%C3%A7%C3%A3o%20no%20site%20que%20o%20pai%20da%20Maria%20construiu%21%20Fa%C3%A7a%20o%20seu%20palpite%20tamb%C3%A9m%21`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button 
+                      onClick={() => {
+                        const url = typeof window !== 'undefined' ? window.location.href : 'https://simulador-copa-2026.vercel.app';
+                        const text = `🏆 ${champion?.name} será campeão da Copa 2026! Fiz minha simulação no site que o pai da Maria construiu! Faça o seu palpite também: ${url}`;
+                        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                      }}
                       style={{ 
                         display: 'inline-block',
                         background: '#25D366', 
                         color: '#fff', 
                         padding: '8px 16px', 
+                        border: 'none',
+                        cursor: 'pointer',
                         borderRadius: '20px', 
                         fontSize: '0.9rem',
                         fontWeight: 600,
@@ -160,12 +192,19 @@ export default function KnockoutBracket({ teams, matches, onScoreChange }: Props
                       }}
                     >
                       Compartilhar no WhatsApp
-                    </a>
+                    </button>
                   </div>
                 )}
               </React.Fragment>
             );
           })}
+
+          <div style={{ marginTop: '2rem' }}>
+            <h3 className="bracket-col-title" style={{ color: '#cd7f32', marginTop: '2rem' }}>Disputa do 3º Lugar</h3>
+            {matches.filter(m => m.phase === 'THIRD_PLACE').map(m => (
+              <div key={m.id} className="bracket-cell">{renderMatch(m)}</div>
+            ))}
+          </div>
         </div>
 
       </div>

@@ -185,6 +185,9 @@ const KO_METADATA: Record<string, { idNum: number, date: string, time: string, v
   'ko_SEMI_FINALS_0': { idNum: 101, date: '14/07/2026', time: '18:00', venue: 'Dallas' },
   'ko_SEMI_FINALS_1': { idNum: 102, date: '15/07/2026', time: '19:00', venue: 'Atlanta' },
 
+  // Disputa de 3º Lugar (103)
+  'ko_THIRD_PLACE_0': { idNum: 103, date: '18/07/2026', time: '18:00', venue: 'Miami' },
+
   // Final (104)
   'ko_FINAL_0': { idNum: 104, date: '19/07/2026', time: '15:00', venue: 'New York/New Jersey' }
 };
@@ -198,12 +201,22 @@ export function generateNextRound(prevRoundMatches: Match[], nextPhaseName: Matc
 
     let winner1: string | null = null;
     if (m1 && m1.homeScore !== null && m1.awayScore !== null) {
-      winner1 = m1.homeScore > m1.awayScore ? m1.homeTeamId : (m1.awayScore > m1.homeScore ? m1.awayTeamId : null);
+      if (m1.homeScore > m1.awayScore) winner1 = m1.homeTeamId;
+      else if (m1.awayScore > m1.homeScore) winner1 = m1.awayTeamId;
+      else if (m1.homePenalties !== undefined && m1.awayPenalties !== undefined && m1.homePenalties !== null && m1.awayPenalties !== null) {
+        if (m1.homePenalties > m1.awayPenalties) winner1 = m1.homeTeamId;
+        else if (m1.awayPenalties > m1.homePenalties) winner1 = m1.awayTeamId;
+      }
     }
     
     let winner2: string | null = null;
     if (m2 && m2.homeScore !== null && m2.awayScore !== null) {
-      winner2 = m2.homeScore > m2.awayScore ? m2.homeTeamId : (m2.awayScore > m2.homeScore ? m2.awayTeamId : null);
+      if (m2.homeScore > m2.awayScore) winner2 = m2.homeTeamId;
+      else if (m2.awayScore > m2.homeScore) winner2 = m2.awayTeamId;
+      else if (m2.homePenalties !== undefined && m2.awayPenalties !== undefined && m2.homePenalties !== null && m2.awayPenalties !== null) {
+        if (m2.homePenalties > m2.awayPenalties) winner2 = m2.homeTeamId;
+        else if (m2.awayPenalties > m2.homePenalties) winner2 = m2.awayTeamId;
+      }
     }
 
     const keyId = `ko_${nextPhaseName}_${i / 2}`;
@@ -224,4 +237,46 @@ export function generateNextRound(prevRoundMatches: Match[], nextPhaseName: Matc
   }
 
   return nextRoundMatches;
+}
+
+export function generateThirdPlaceMatch(semiFinalMatches: Match[]): Match[] {
+  if (semiFinalMatches.length !== 2) return [];
+
+  const m1 = semiFinalMatches[0];
+  const m2 = semiFinalMatches[1];
+
+  let loser1: string | null = null;
+  if (m1 && m1.homeScore !== null && m1.awayScore !== null) {
+    if (m1.homeScore < m1.awayScore) loser1 = m1.homeTeamId;
+    else if (m1.awayScore < m1.homeScore) loser1 = m1.awayTeamId;
+    else if (m1.homePenalties !== undefined && m1.awayPenalties !== undefined && m1.homePenalties !== null && m1.awayPenalties !== null) {
+      if (m1.homePenalties < m1.awayPenalties) loser1 = m1.homeTeamId;
+      else if (m1.awayPenalties < m1.homePenalties) loser1 = m1.awayTeamId;
+    }
+  }
+
+  let loser2: string | null = null;
+  if (m2 && m2.homeScore !== null && m2.awayScore !== null) {
+    if (m2.homeScore < m2.awayScore) loser2 = m2.homeTeamId;
+    else if (m2.awayScore < m2.homeScore) loser2 = m2.awayTeamId;
+    else if (m2.homePenalties !== undefined && m2.awayPenalties !== undefined && m2.homePenalties !== null && m2.awayPenalties !== null) {
+      if (m2.homePenalties < m2.awayPenalties) loser2 = m2.homeTeamId;
+      else if (m2.awayPenalties < m2.homePenalties) loser2 = m2.awayTeamId;
+    }
+  }
+
+  const meta = KO_METADATA['ko_THIRD_PLACE_0'];
+
+  return [{
+    id: `ko_${meta.idNum}`,
+    homeTeamId: loser1,
+    awayTeamId: loser2,
+    homeScore: null,
+    awayScore: null,
+    status: 'SCHEDULED',
+    date: meta.date,
+    time: meta.time,
+    venue: meta.venue,
+    phase: 'THIRD_PLACE'
+  }];
 }

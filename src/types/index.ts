@@ -13,6 +13,8 @@ export interface Match {
   awayTeamId: string | null;
   homeScore: number | null;
   awayScore: number | null;
+  homePenalties?: number | null;
+  awayPenalties?: number | null;
   status: 'SCHEDULED' | 'IN_PROGRESS' | 'FINISHED';
   group?: string; // Only for group stage
   phase: 'GROUP' | 'ROUND_OF_32' | 'ROUND_OF_16' | 'QUARTER_FINALS' | 'SEMI_FINALS' | 'FINAL' | 'THIRD_PLACE';
