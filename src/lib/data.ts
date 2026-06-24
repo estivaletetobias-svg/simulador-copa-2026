@@ -64,9 +64,9 @@ export const TEAMS: Team[] = [
 
   // Group K
   { id: 'POR', name: 'Portugal', flagUrl: 'https://flagcdn.com/w40/pt.png', group: 'K' },
-  { id: 'COL', name: 'Colômbia', flagUrl: 'https://flagcdn.com/w40/co.png', group: 'K' },
-  { id: 'UZB', name: 'Uzbequistão', flagUrl: 'https://flagcdn.com/w40/uz.png', group: 'K' },
   { id: 'COD', name: 'RD Congo', flagUrl: 'https://flagcdn.com/w40/cd.png', group: 'K' },
+  { id: 'UZB', name: 'Uzbequistão', flagUrl: 'https://flagcdn.com/w40/uz.png', group: 'K' },
+  { id: 'COL', name: 'Colômbia', flagUrl: 'https://flagcdn.com/w40/co.png', group: 'K' },
 
   // Group L
   { id: 'ENG', name: 'Inglaterra', flagUrl: 'https://flagcdn.com/w40/gb-eng.png', group: 'L' },
@@ -127,79 +127,12 @@ const applyRealResult = (homeId: string, awayId: string, homeScore: number, away
   }
 };
 
-// Grupo L
-applyRealResult('TUN', 'KSA', 2, 1);
-applyRealResult('NZL', 'COL', 0, 3);
-
-
-// Grupo I
-applyRealResult('FRA', 'IRQ', 3, 0);
-applyRealResult('NOR', 'SEN', 3, 2);
-
-// Grupo J
-applyRealResult('ARG', 'AUT', 2, 0);
-applyRealResult('ALG', 'JOR', 2, 1);
-
-// Grupo A (Exemplo parcial com base em pontuações reais - México e Coreia ganhando)
-applyRealResult('MEX', 'RSA', 2, 0);
-applyRealResult('KOR', 'CZE', 1, 0);
-applyRealResult('MEX', 'CZE', 1, 1);
-
-// Grupo D (Exemplo com EUA liderando)
-applyRealResult('USA', 'AUS', 2, 0);
-applyRealResult('USA', 'TUR', 3, 0);
-applyRealResult('PAR', 'TUR', 1, 0);
-
-
-// --- PREENCHIMENTO COMPLETO (SIMULADO) ATÉ 23 DE JUNHO ---
-applyRealResult('MEX', 'RSA', 2, 1);
-applyRealResult('KOR', 'CZE', 0, 2);
-applyRealResult('MEX', 'KOR', 1, 0);
-applyRealResult('RSA', 'CZE', 0, 3);
-applyRealResult('CAN', 'SUI', 0, 0);
-applyRealResult('QAT', 'BIH', 0, 3);
-applyRealResult('CAN', 'QAT', 1, 2);
-applyRealResult('SUI', 'BIH', 3, 0);
-applyRealResult('BRA', 'MAR', 0, 0);
-applyRealResult('HAI', 'SCO', 0, 1);
-applyRealResult('BRA', 'HAI', 3, 0);
-applyRealResult('SCO', 'MAR', 0, 1);
-applyRealResult('USA', 'PAR', 0, 0);
-applyRealResult('AUS', 'TUR', 2, 2);
-applyRealResult('USA', 'AUS', 2, 1);
-applyRealResult('PAR', 'TUR', 2, 1);
-applyRealResult('GER', 'ECU', 0, 2);
-applyRealResult('CIV', 'CUW', 1, 0);
-applyRealResult('GER', 'CIV', 3, 1);
-applyRealResult('ECU', 'CUW', 0, 2);
-applyRealResult('NED', 'JPN', 3, 0);
-applyRealResult('TUN', 'SWE', 0, 3);
-applyRealResult('NED', 'TUN', 0, 1);
-applyRealResult('JPN', 'SWE', 0, 1);
-applyRealResult('BEL', 'EGY', 1, 0);
-applyRealResult('IRN', 'NZL', 2, 0);
-applyRealResult('BEL', 'IRN', 0, 2);
-applyRealResult('EGY', 'NZL', 3, 0);
-applyRealResult('ESP', 'URU', 0, 1);
-applyRealResult('KSA', 'CPV', 1, 3);
-applyRealResult('ESP', 'KSA', 2, 1);
-applyRealResult('URU', 'CPV', 2, 0);
-applyRealResult('FRA', 'SEN', 3, 0);
-applyRealResult('NOR', 'IRQ', 0, 1);
-applyRealResult('FRA', 'NOR', 0, 3);
-applyRealResult('SEN', 'IRQ', 2, 2);
-applyRealResult('ARG', 'ALG', 2, 2);
-applyRealResult('AUT', 'JOR', 0, 0);
-applyRealResult('ARG', 'AUT', 1, 1);
-applyRealResult('ALG', 'JOR', 1, 2);
-applyRealResult('POR', 'COL', 3, 0);
-applyRealResult('UZB', 'COD', 2, 0);
-applyRealResult('POR', 'UZB', 3, 1);
-applyRealResult('COL', 'COD', 2, 2);
-applyRealResult('ENG', 'CRO', 3, 0);
-applyRealResult('GHA', 'PAN', 2, 1);
-applyRealResult('ENG', 'GHA', 3, 0);
-applyRealResult('CRO', 'PAN', 3, 1);
+// --- APENAS RESULTADOS VERÍDICOS DA COPA DE 2026 (Até 23/06) ---
+// Qualquer outro jogo será atualizado pela API de Live Matches ou quando for finalizado.
+// Grupo K
+applyRealResult('POR', 'COD', 0, 0);
+applyRealResult('COL', 'UZB', 3, 0);
+applyRealResult('POR', 'UZB', 5, 0);
 
 // Ensure all matches are sorted by date and time
 INITIAL_MATCHES.sort((a, b) => {
