@@ -216,21 +216,33 @@ a {
 }
 
 /* Connectors Line */
-@media (min-width: 768px) {
-  .bracket-cell::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -1.5rem;
-    width: 1.5rem;
-    height: 2px;
-    background: rgba(255,255,255,0.1);
-    z-index: 1;
-  }
-  
-  .bracket-column:last-child .bracket-cell::after {
-    display: none;
-  }
+/* Connectors Line with Arrows */
+.bracket-cell::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -1.5rem;
+  width: 1.5rem;
+  height: 2px;
+  background: rgba(255,255,255,0.15);
+  z-index: 1;
+}
+
+.bracket-cell::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -1.5rem;
+  transform: translateY(-50%);
+  border-left: 6px solid rgba(255,255,255,0.3);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  z-index: 2;
+}
+
+.bracket-column:last-child .bracket-cell::after,
+.bracket-column:last-child .bracket-cell::before {
+  display: none;
 }
 
 /* Removed obsolete .match-card::after connectors */
