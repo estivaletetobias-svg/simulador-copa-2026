@@ -33,27 +33,27 @@ export default function LiveRadar({ onLiveUpdate }: Props) {
   if (loading || liveMatches.length === 0) return null;
 
   return (
-    <div className="glass-panel" style={{ width: '100%', maxWidth: '1200px', marginBottom: '32px', padding: '16px 24px', border: '1px solid var(--color-green)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+    <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
         <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--color-green-light)', animation: 'pulse 2s infinite' }}></div>
         <h2 style={{ color: 'var(--color-green-light)', margin: 0, fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Radar Ao Vivo</h2>
       </div>
       
-      <div style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '8px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {liveMatches.map(m => (
-          <div key={m.id} style={{ minWidth: '200px', background: 'rgba(0,0,0,0.4)', borderRadius: '8px', padding: '12px', border: '1px solid var(--color-card-border)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
+          <div key={m.id} className="glass-panel" style={{ borderRadius: '8px', padding: '16px', border: '1px solid var(--color-green)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
               <span style={{ fontSize: '0.8rem', color: 'var(--color-yellow)', fontWeight: 'bold' }}>
                 {m.status === 'IN_PROGRESS' ? 'Em andamento' : 'Encerrado'}
               </span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontWeight: '600' }}>{m.homeTeamId}</span>
-              <span style={{ fontSize: '1.4rem', fontWeight: '900', color: 'var(--color-text-primary)' }}>{m.homeScore}</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+              <span style={{ fontWeight: '600', fontSize: '1.2rem' }}>{m.homeTeamId}</span>
+              <span style={{ fontSize: '1.6rem', fontWeight: '900', color: 'var(--color-text-primary)' }}>{m.homeScore}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontWeight: '600' }}>{m.awayTeamId}</span>
-              <span style={{ fontSize: '1.4rem', fontWeight: '900', color: 'var(--color-text-primary)' }}>{m.awayScore}</span>
+              <span style={{ fontWeight: '600', fontSize: '1.2rem' }}>{m.awayTeamId}</span>
+              <span style={{ fontSize: '1.6rem', fontWeight: '900', color: 'var(--color-text-primary)' }}>{m.awayScore}</span>
             </div>
           </div>
         ))}

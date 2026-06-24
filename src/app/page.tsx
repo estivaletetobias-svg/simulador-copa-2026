@@ -98,65 +98,91 @@ export default function Home() {
   };
 
   const groups = Array.from(new Set(TEAMS.map(t => t.group))).sort();
+  const [activeTab, setActiveTab] = useState<'groups' | 'knockout'>('groups');
 
   return (
-    <div className={styles.wrapper}>
-      <header className={styles.header}>
-        <h1 className="text-gradient">Copa do Mundo 2026</h1>
-        <p className={styles.subtitle}>Simulador Oficial</p>
-      </header>
+    <div className={styles.dashboard}>
+      <nav className={styles.sidebar}>
+        <h2 className={styles.sidebarTitle}>Copa 2026</h2>
+        <div className={styles.sidebarNav}>
+          <button 
+            className={`${styles.navButton} ${activeTab === 'groups' ? styles.navButtonActive : ''}`}
+            onClick={() => setActiveTab('groups')}
+          >
+            Fase de Grupos
+          </button>
+          <button 
+            className={`${styles.navButton} ${activeTab === 'knockout' ? styles.navButtonActive : ''}`}
+            onClick={() => setActiveTab('knockout')}
+          >
+            Mata-Mata
+          </button>
+        </div>
+      </nav>
 
-      <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
-        <LiveRadar onLiveUpdate={handleLiveUpdate} />
-      </div>
+      <main className={styles.mainContent}>
+        <header className={styles.header}>
+          <h1 className="text-gradient">Simulador Oficial</h1>
+          <p className={styles.subtitle}>
+            {activeTab === 'groups' ? 'Fase de Grupos' : 'Fase Eliminatória'}
+          </p>
+        </header>
 
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {groups.map(group => {
-          const groupMatches = matches.filter(m => m.group === group);
-          const standings = calculateGroupStandings(TEAMS, matches, group);
-          
-          return (
-            <div key={group} style={{ 
-              width: '100%', 
-              maxWidth: '1200px', 
-              display: 'flex', 
-              gap: '40px', 
-              marginBottom: '60px', 
-              flexWrap: 'wrap',
-              justifyContent: 'center'
-            }}>
+        {activeTab === 'groups' && (
+          <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {groups.map(group => {
+              const groupMatches = matches.filter(m => m.group === group);
+              const standings = calculateGroupStandings(TEAMS, matches, group);
               
-              <div style={{ flex: '1 1 450px', maxWidth: '550px' }}>
-                <h3 style={{ marginBottom: '20px', color: 'var(--color-text-secondary)', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>
-                  Jogos - Grupo {group}
-                </h3>
-                {groupMatches.map(m => (
-                  <MatchCard 
-                    key={m.id} 
-                    match={m} 
-                    homeTeam={TEAMS.find(t => t.id === m.homeTeamId)!} 
-                    awayTeam={TEAMS.find(t => t.id === m.awayTeamId)!}
-                    onScoreChange={handleScoreChange}
-                  />
-                ))}
-              </div>
+              return (
+                <div key={group} style={{ 
+                  width: '100%', 
+                  maxWidth: '1200px', 
+                  display: 'flex', 
+                  gap: '40px', 
+                  marginBottom: '60px', 
+                  flexWrap: 'wrap',
+                  justifyContent: 'center'
+                }}>
+                  
+                  <div style={{ flex: '1 1 450px', maxWidth: '550px' }}>
+                    <h3 style={{ marginBottom: '20px', color: 'var(--color-text-secondary)', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px' }}>
+                      Jogos - Grupo {group}
+                    </h3>
+                    {groupMatches.map(m => (
+                      <MatchCard 
+                        key={m.id} 
+                        match={m} 
+                        homeTeam={TEAMS.find(t => t.id === m.homeTeamId)!} 
+                        awayTeam={TEAMS.find(t => t.id === m.awayTeamId)!}
+                        onScoreChange={handleScoreChange}
+                      />
+                    ))}
+                  </div>
 
-              <div style={{ flex: '1 1 450px', maxWidth: '550px' }}>
-                <GroupTable 
-                  groupName={group} 
-                  standings={standings} 
-                  teams={TEAMS} 
-                />
-              </div>
+                  <div style={{ flex: '1 1 450px', maxWidth: '550px' }}>
+                    <GroupTable 
+                      groupName={group} 
+                      standings={standings} 
+                      teams={TEAMS} 
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
-            </div>
-          );
-        })}
-      </div>
+        {activeTab === 'knockout' && (
+          <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
+            <KnockoutBracket teams={TEAMS} matches={knockoutMatches} onScoreChange={handleScoreChange} />
+          </div>
+        )}
+      </main>
 
-      <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
-        <KnockoutBracket teams={TEAMS} matches={knockoutMatches} onScoreChange={handleScoreChange} />
-      </div>
+      <aside className={styles.rightPanel}>
+        <LiveRadar onLiveUpdate={handleLiveUpdate} />
+      </aside>
     </div>
   );
 }
