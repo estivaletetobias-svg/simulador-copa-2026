@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import { TEAMS, INITIAL_MATCHES } from '../lib/data';
 import { Match } from '../types';
@@ -12,6 +12,38 @@ import KnockoutBracket from '../components/KnockoutBracket';
 
 export default function Home() {
   const [matches, setMatches] = useState(INITIAL_MATCHES);
+
+  useEffect(() => {
+    // Sincronizar todos os jogos já finalizados da API openfootball
+    fetch('/api/all-matches')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.matches) {
+          setMatches(prev => {
+            let updated = [...prev];
+            data.matches.forEach((finishedMatch: any) => {
+              // Encontrar o jogo correspondente no nosso calendário inicial
+              const matchIndex = updated.findIndex(m => 
+                (m.homeTeamId === finishedMatch.homeTeamId && m.awayTeamId === finishedMatch.awayTeamId) ||
+                (m.homeTeamId === finishedMatch.awayTeamId && m.awayTeamId === finishedMatch.homeTeamId)
+              );
+              
+              if (matchIndex !== -1) {
+                const match = updated[matchIndex];
+                // Garantir a orientação correta dos placares em relação a quem é home/away no nosso calendário
+                if (match.homeTeamId === finishedMatch.homeTeamId) {
+                  updated[matchIndex] = { ...match, homeScore: finishedMatch.homeScore, awayScore: finishedMatch.awayScore, status: 'FINISHED' };
+                } else {
+                  updated[matchIndex] = { ...match, homeScore: finishedMatch.awayScore, awayScore: finishedMatch.homeScore, status: 'FINISHED' };
+                }
+              }
+            });
+            return updated;
+          });
+        }
+      })
+      .catch(err => console.error("Erro ao sincronizar resultados:", err));
+  }, []);
 
   const knockoutMatches = React.useMemo(() => {
     const applySavedScores = (baseMatches: Match[]) => baseMatches.map(baseMatch => {
