@@ -165,14 +165,17 @@ export default function Home() {
 
       <main className={styles.mainContent}>
         <header className={styles.header}>
-          <h1 
-            className="text-gradient" 
-            onClick={handleTitleClick}
-            style={{ cursor: 'pointer', userSelect: 'none' }}
-          >
-            {isMariaEdition ? "Simulador Oficial - Maria's Edition 🌟" : "Simulador Oficial"}
-          </h1>
-          <p className={styles.subtitle}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+            <img src="/logo.png" alt="Copa 2026 Logo" style={{ width: '48px', height: '48px', objectFit: 'contain', filter: 'drop-shadow(0 0 10px rgba(254, 223, 0, 0.3))' }} />
+            <h1 
+              className="text-gradient" 
+              onClick={handleTitleClick}
+              style={{ cursor: 'pointer', userSelect: 'none', margin: 0 }}
+            >
+              {isMariaEdition ? "Simulador Oficial - Maria's Edition 🌟" : "Simulador Oficial"}
+            </h1>
+          </div>
+          <p className={styles.subtitle} style={{ marginTop: '8px' }}>
             {activeTab === 'groups' ? 'Fase de Grupos' : 'Fase Eliminatória'}
           </p>
         </header>
