@@ -1,26 +1,46 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  // Simulando jogos ao vivo com base nos times reais dos grupos C (Brasil) e D (EUA)
+  // Simulando jogos ao vivo reais de hoje: 23 de Junho de 2026
   const mockLiveMatches = [
     {
-      id: 'm13', // Brasil x Marrocos
-      homeTeamId: 'BRA',
-      awayTeamId: 'MAR',
-      homeScore: 3,
+      id: 'm_live_1', // Portugal x Uzbequistão
+      homeTeamId: 'POR',
+      awayTeamId: 'UZB',
+      homeScore: 1,
       awayScore: 0,
       status: 'IN_PROGRESS',
-      group: 'C',
+      group: 'K',
       phase: 'GROUP'
     },
     {
-      id: 'm19', // EUA x Paraguai
-      homeTeamId: 'USA',
-      awayTeamId: 'PAR',
+      id: 'm_live_2', // Inglaterra x Gana
+      homeTeamId: 'ENG',
+      awayTeamId: 'GHA',
+      homeScore: 2,
+      awayScore: 1,
+      status: 'IN_PROGRESS',
+      group: 'L',
+      phase: 'GROUP'
+    },
+    {
+      id: 'm_live_3', // Panamá x Croácia
+      homeTeamId: 'PAN',
+      awayTeamId: 'CRO',
+      homeScore: 0,
+      awayScore: 2,
+      status: 'IN_PROGRESS',
+      group: 'L',
+      phase: 'GROUP'
+    },
+    {
+      id: 'm_live_4', // Colômbia x RD Congo
+      homeTeamId: 'COL',
+      awayTeamId: 'COD',
       homeScore: 1,
       awayScore: 1,
       status: 'IN_PROGRESS',
-      group: 'D',
+      group: 'K',
       phase: 'GROUP'
     }
   ];
