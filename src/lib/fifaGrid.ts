@@ -10,651 +10,651 @@ export interface FifaGridMatch {
 
 export const FIFA_GRID: FifaGridMatch[] = [
   {
-    "group": "A",
     "matchId": 1,
+    "group": "A",
     "homePos": 1,
     "awayPos": 2,
     "date": "11/06/2026",
-    "time": "14:00",
-    "venue": "Levi's Stadium, San Francisco"
+    "time": "16:00",
+    "venue": "Mexico City"
   },
   {
-    "group": "A",
     "matchId": 2,
+    "group": "A",
     "homePos": 3,
     "awayPos": 4,
     "date": "11/06/2026",
-    "time": "17:00",
-    "venue": "AT&T Stadium, Dallas"
+    "time": "23:00",
+    "venue": "Guadalajara (Zapopan)"
   },
   {
-    "group": "A",
     "matchId": 3,
-    "homePos": 1,
-    "awayPos": 3,
-    "date": "17/06/2026",
-    "time": "17:00",
-    "venue": "Estadio BBVA, Monterrey"
+    "group": "A",
+    "homePos": 4,
+    "awayPos": 2,
+    "date": "18/06/2026",
+    "time": "13:00",
+    "venue": "Atlanta"
   },
   {
-    "group": "A",
     "matchId": 4,
-    "homePos": 4,
-    "awayPos": 2,
-    "date": "17/06/2026",
-    "time": "21:00",
-    "venue": "BMO Field, Toronto"
+    "group": "A",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "18/06/2026",
+    "time": "22:00",
+    "venue": "Guadalajara (Zapopan)"
   },
   {
-    "group": "A",
     "matchId": 5,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "23/06/2026",
-    "time": "17:00",
-    "venue": "Estadio BBVA, Monterrey"
-  },
-  {
     "group": "A",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "24/06/2026",
+    "time": "22:00",
+    "venue": "Mexico City"
+  },
+  {
     "matchId": 6,
+    "group": "A",
     "homePos": 2,
     "awayPos": 3,
-    "date": "23/06/2026",
-    "time": "17:00",
-    "venue": "BC Place, Vancouver"
+    "date": "24/06/2026",
+    "time": "22:00",
+    "venue": "Monterrey (Guadalupe)"
   },
   {
-    "group": "B",
     "matchId": 7,
+    "group": "B",
     "homePos": 1,
     "awayPos": 2,
     "date": "12/06/2026",
-    "time": "14:00",
-    "venue": "AT&T Stadium, Dallas"
+    "time": "16:00",
+    "venue": "Toronto"
   },
   {
-    "group": "B",
     "matchId": 8,
+    "group": "B",
     "homePos": 3,
     "awayPos": 4,
-    "date": "12/06/2026",
-    "time": "17:00",
-    "venue": "Levi's Stadium, San Francisco"
+    "date": "13/06/2026",
+    "time": "16:00",
+    "venue": "San Francisco Bay Area (Santa Clara)"
   },
   {
-    "group": "B",
     "matchId": 9,
-    "homePos": 1,
-    "awayPos": 3,
+    "group": "B",
+    "homePos": 4,
+    "awayPos": 2,
     "date": "18/06/2026",
-    "time": "17:00",
-    "venue": "Lincoln Financial Field, Philadelphia"
+    "time": "16:00",
+    "venue": "Los Angeles (Inglewood)"
   },
   {
-    "group": "B",
     "matchId": 10,
-    "homePos": 4,
-    "awayPos": 2,
+    "group": "B",
+    "homePos": 1,
+    "awayPos": 3,
     "date": "18/06/2026",
-    "time": "21:00",
-    "venue": "Mercedes-Benz Stadium, Atlanta"
+    "time": "19:00",
+    "venue": "Vancouver"
   },
   {
-    "group": "B",
     "matchId": 11,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "24/06/2026",
-    "time": "17:00",
-    "venue": "Lincoln Financial Field, Philadelphia"
-  },
-  {
     "group": "B",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "24/06/2026",
+    "time": "16:00",
+    "venue": "Vancouver"
+  },
+  {
     "matchId": 12,
+    "group": "B",
     "homePos": 2,
     "awayPos": 3,
     "date": "24/06/2026",
-    "time": "17:00",
-    "venue": "MetLife Stadium, NY"
+    "time": "16:00",
+    "venue": "Seattle"
   },
   {
-    "group": "C",
     "matchId": 13,
+    "group": "C",
     "homePos": 1,
     "awayPos": 2,
     "date": "13/06/2026",
-    "time": "17:00",
-    "venue": "New York New Jersey Stadium"
+    "time": "19:00",
+    "venue": "New York/New Jersey (East Rutherford)"
   },
   {
-    "group": "C",
     "matchId": 14,
+    "group": "C",
     "homePos": 3,
     "awayPos": 4,
     "date": "13/06/2026",
-    "time": "17:00",
-    "venue": "Boston Stadium, Foxborough"
+    "time": "22:00",
+    "venue": "Boston (Foxborough)"
   },
   {
-    "group": "C",
     "matchId": 15,
-    "homePos": 1,
-    "awayPos": 3,
+    "group": "C",
+    "homePos": 4,
+    "awayPos": 2,
     "date": "19/06/2026",
-    "time": "17:00",
-    "venue": "Miami Stadium, Miami Gardens"
+    "time": "19:00",
+    "venue": "Boston (Foxborough)"
   },
   {
-    "group": "C",
     "matchId": 16,
+    "group": "C",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "19/06/2026",
+    "time": "21:30",
+    "venue": "Philadelphia"
+  },
+  {
+    "matchId": 17,
+    "group": "C",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "24/06/2026",
+    "time": "19:00",
+    "venue": "Miami (Miami Gardens)"
+  },
+  {
+    "matchId": 18,
+    "group": "C",
+    "homePos": 2,
+    "awayPos": 3,
+    "date": "24/06/2026",
+    "time": "19:00",
+    "venue": "Atlanta"
+  },
+  {
+    "matchId": 19,
+    "group": "D",
+    "homePos": 1,
+    "awayPos": 2,
+    "date": "12/06/2026",
+    "time": "22:00",
+    "venue": "Los Angeles (Inglewood)"
+  },
+  {
+    "matchId": 20,
+    "group": "D",
+    "homePos": 3,
+    "awayPos": 4,
+    "date": "13/06/2026",
+    "time": "01:00",
+    "venue": "Vancouver"
+  },
+  {
+    "matchId": 21,
+    "group": "D",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "19/06/2026",
+    "time": "16:00",
+    "venue": "Seattle"
+  },
+  {
+    "matchId": 22,
+    "group": "D",
     "homePos": 4,
     "awayPos": 2,
     "date": "19/06/2026",
-    "time": "21:00",
-    "venue": "Los Angeles Stadium, Inglewood"
+    "time": "00:00",
+    "venue": "San Francisco Bay Area (Santa Clara)"
   },
   {
-    "group": "C",
-    "matchId": 17,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "25/06/2026",
-    "time": "19:00",
-    "venue": "Miami Stadium, Miami Gardens"
-  },
-  {
-    "group": "C",
-    "matchId": 18,
-    "homePos": 2,
-    "awayPos": 3,
-    "date": "25/06/2026",
-    "time": "19:00",
-    "venue": "Boston Stadium, Foxborough"
-  },
-  {
-    "group": "D",
-    "matchId": 19,
-    "homePos": 1,
-    "awayPos": 2,
-    "date": "14/06/2026",
-    "time": "14:00",
-    "venue": "Estadio BBVA, Monterrey"
-  },
-  {
-    "group": "D",
-    "matchId": 20,
-    "homePos": 3,
-    "awayPos": 4,
-    "date": "14/06/2026",
-    "time": "17:00",
-    "venue": "Arrowhead Stadium, KC"
-  },
-  {
-    "group": "D",
-    "matchId": 21,
-    "homePos": 1,
-    "awayPos": 3,
-    "date": "20/06/2026",
-    "time": "17:00",
-    "venue": "Arrowhead Stadium, KC"
-  },
-  {
-    "group": "D",
-    "matchId": 22,
-    "homePos": 4,
-    "awayPos": 2,
-    "date": "20/06/2026",
-    "time": "21:00",
-    "venue": "BMO Field, Toronto"
-  },
-  {
-    "group": "D",
     "matchId": 23,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "26/06/2026",
-    "time": "17:00",
-    "venue": "MetLife Stadium, NY"
-  },
-  {
     "group": "D",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "25/06/2026",
+    "time": "23:00",
+    "venue": "Los Angeles (Inglewood)"
+  },
+  {
     "matchId": 24,
+    "group": "D",
+    "homePos": 2,
+    "awayPos": 3,
+    "date": "25/06/2026",
+    "time": "23:00",
+    "venue": "San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "matchId": 25,
+    "group": "E",
+    "homePos": 1,
+    "awayPos": 2,
+    "date": "14/06/2026",
+    "time": "14:00",
+    "venue": "Houston"
+  },
+  {
+    "matchId": 26,
+    "group": "E",
+    "homePos": 3,
+    "awayPos": 4,
+    "date": "14/06/2026",
+    "time": "20:00",
+    "venue": "Philadelphia"
+  },
+  {
+    "matchId": 27,
+    "group": "E",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "20/06/2026",
+    "time": "17:00",
+    "venue": "Toronto"
+  },
+  {
+    "matchId": 28,
+    "group": "E",
+    "homePos": 4,
+    "awayPos": 2,
+    "date": "20/06/2026",
+    "time": "21:00",
+    "venue": "Kansas City"
+  },
+  {
+    "matchId": 29,
+    "group": "E",
+    "homePos": 2,
+    "awayPos": 3,
+    "date": "25/06/2026",
+    "time": "17:00",
+    "venue": "Philadelphia"
+  },
+  {
+    "matchId": 30,
+    "group": "E",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "25/06/2026",
+    "time": "17:00",
+    "venue": "New York/New Jersey (East Rutherford)"
+  },
+  {
+    "matchId": 31,
+    "group": "F",
+    "homePos": 1,
+    "awayPos": 2,
+    "date": "14/06/2026",
+    "time": "17:00",
+    "venue": "Dallas (Arlington)"
+  },
+  {
+    "matchId": 32,
+    "group": "F",
+    "homePos": 3,
+    "awayPos": 4,
+    "date": "14/06/2026",
+    "time": "23:00",
+    "venue": "Monterrey (Guadalupe)"
+  },
+  {
+    "matchId": 33,
+    "group": "F",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "20/06/2026",
+    "time": "14:00",
+    "venue": "Houston"
+  },
+  {
+    "matchId": 34,
+    "group": "F",
+    "homePos": 4,
+    "awayPos": 2,
+    "date": "20/06/2026",
+    "time": "01:00",
+    "venue": "Monterrey (Guadalupe)"
+  },
+  {
+    "matchId": 35,
+    "group": "F",
+    "homePos": 2,
+    "awayPos": 3,
+    "date": "25/06/2026",
+    "time": "20:00",
+    "venue": "Dallas (Arlington)"
+  },
+  {
+    "matchId": 36,
+    "group": "F",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "25/06/2026",
+    "time": "20:00",
+    "venue": "Kansas City"
+  },
+  {
+    "matchId": 37,
+    "group": "G",
+    "homePos": 1,
+    "awayPos": 2,
+    "date": "15/06/2026",
+    "time": "16:00",
+    "venue": "Seattle"
+  },
+  {
+    "matchId": 38,
+    "group": "G",
+    "homePos": 3,
+    "awayPos": 4,
+    "date": "15/06/2026",
+    "time": "22:00",
+    "venue": "Los Angeles (Inglewood)"
+  },
+  {
+    "matchId": 39,
+    "group": "G",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "21/06/2026",
+    "time": "16:00",
+    "venue": "Los Angeles (Inglewood)"
+  },
+  {
+    "matchId": 40,
+    "group": "G",
+    "homePos": 4,
+    "awayPos": 2,
+    "date": "21/06/2026",
+    "time": "22:00",
+    "venue": "Vancouver"
+  },
+  {
+    "matchId": 41,
+    "group": "G",
     "homePos": 2,
     "awayPos": 3,
     "date": "26/06/2026",
-    "time": "17:00",
-    "venue": "Estadio BBVA, Monterrey"
+    "time": "00:00",
+    "venue": "Seattle"
   },
   {
-    "group": "E",
-    "matchId": 25,
-    "homePos": 1,
-    "awayPos": 2,
-    "date": "15/06/2026",
-    "time": "14:00",
-    "venue": "Hard Rock Stadium, Miami"
-  },
-  {
-    "group": "E",
-    "matchId": 26,
-    "homePos": 3,
-    "awayPos": 4,
-    "date": "15/06/2026",
-    "time": "17:00",
-    "venue": "Gillette Stadium, Boston"
-  },
-  {
-    "group": "E",
-    "matchId": 27,
-    "homePos": 1,
-    "awayPos": 3,
-    "date": "21/06/2026",
-    "time": "17:00",
-    "venue": "Hard Rock Stadium, Miami"
-  },
-  {
-    "group": "E",
-    "matchId": 28,
-    "homePos": 4,
-    "awayPos": 2,
-    "date": "21/06/2026",
-    "time": "21:00",
-    "venue": "MetLife Stadium, NY"
-  },
-  {
-    "group": "E",
-    "matchId": 29,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "27/06/2026",
-    "time": "17:00",
-    "venue": "Estadio Akron, Guadalajara"
-  },
-  {
-    "group": "E",
-    "matchId": 30,
-    "homePos": 2,
-    "awayPos": 3,
-    "date": "27/06/2026",
-    "time": "17:00",
-    "venue": "Hard Rock Stadium, Miami"
-  },
-  {
-    "group": "F",
-    "matchId": 31,
-    "homePos": 1,
-    "awayPos": 2,
-    "date": "15/06/2026",
-    "time": "14:00",
-    "venue": "Lincoln Financial Field, Philadelphia"
-  },
-  {
-    "group": "F",
-    "matchId": 32,
-    "homePos": 3,
-    "awayPos": 4,
-    "date": "15/06/2026",
-    "time": "17:00",
-    "venue": "Estadio BBVA, Monterrey"
-  },
-  {
-    "group": "F",
-    "matchId": 33,
-    "homePos": 1,
-    "awayPos": 3,
-    "date": "21/06/2026",
-    "time": "17:00",
-    "venue": "BMO Field, Toronto"
-  },
-  {
-    "group": "F",
-    "matchId": 34,
-    "homePos": 4,
-    "awayPos": 2,
-    "date": "21/06/2026",
-    "time": "21:00",
-    "venue": "Arrowhead Stadium, KC"
-  },
-  {
-    "group": "F",
-    "matchId": 35,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "27/06/2026",
-    "time": "17:00",
-    "venue": "Estadio Akron, Guadalajara"
-  },
-  {
-    "group": "F",
-    "matchId": 36,
-    "homePos": 2,
-    "awayPos": 3,
-    "date": "27/06/2026",
-    "time": "17:00",
-    "venue": "BC Place, Vancouver"
-  },
-  {
-    "group": "G",
-    "matchId": 37,
-    "homePos": 1,
-    "awayPos": 2,
-    "date": "16/06/2026",
-    "time": "14:00",
-    "venue": "Lumen Field, Seattle"
-  },
-  {
-    "group": "G",
-    "matchId": 38,
-    "homePos": 3,
-    "awayPos": 4,
-    "date": "16/06/2026",
-    "time": "17:00",
-    "venue": "AT&T Stadium, Dallas"
-  },
-  {
-    "group": "G",
-    "matchId": 39,
-    "homePos": 1,
-    "awayPos": 3,
-    "date": "22/06/2026",
-    "time": "17:00",
-    "venue": "Estadio Azteca, Mexico City"
-  },
-  {
-    "group": "G",
-    "matchId": 40,
-    "homePos": 4,
-    "awayPos": 2,
-    "date": "22/06/2026",
-    "time": "21:00",
-    "venue": "NRG Stadium, Houston"
-  },
-  {
-    "group": "G",
-    "matchId": 41,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "28/06/2026",
-    "time": "17:00",
-    "venue": "MetLife Stadium, NY"
-  },
-  {
-    "group": "G",
     "matchId": 42,
-    "homePos": 2,
-    "awayPos": 3,
-    "date": "28/06/2026",
-    "time": "17:00",
-    "venue": "SoFi Stadium, LA"
+    "group": "G",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "26/06/2026",
+    "time": "00:00",
+    "venue": "Vancouver"
   },
   {
-    "group": "H",
     "matchId": 43,
+    "group": "H",
     "homePos": 1,
     "awayPos": 2,
-    "date": "16/06/2026",
-    "time": "14:00",
-    "venue": "Estadio Azteca, Mexico City"
+    "date": "15/06/2026",
+    "time": "13:00",
+    "venue": "Atlanta"
   },
   {
-    "group": "H",
     "matchId": 44,
+    "group": "H",
+    "homePos": 3,
+    "awayPos": 4,
+    "date": "15/06/2026",
+    "time": "19:00",
+    "venue": "Miami (Miami Gardens)"
+  },
+  {
+    "matchId": 45,
+    "group": "H",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "21/06/2026",
+    "time": "13:00",
+    "venue": "Atlanta"
+  },
+  {
+    "matchId": 46,
+    "group": "H",
+    "homePos": 4,
+    "awayPos": 2,
+    "date": "21/06/2026",
+    "time": "19:00",
+    "venue": "Miami (Miami Gardens)"
+  },
+  {
+    "matchId": 47,
+    "group": "H",
+    "homePos": 2,
+    "awayPos": 3,
+    "date": "26/06/2026",
+    "time": "21:00",
+    "venue": "Houston"
+  },
+  {
+    "matchId": 48,
+    "group": "H",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "26/06/2026",
+    "time": "21:00",
+    "venue": "Guadalajara (Zapopan)"
+  },
+  {
+    "matchId": 49,
+    "group": "I",
+    "homePos": 1,
+    "awayPos": 2,
+    "date": "16/06/2026",
+    "time": "16:00",
+    "venue": "New York/New Jersey (East Rutherford)"
+  },
+  {
+    "matchId": 50,
+    "group": "I",
     "homePos": 3,
     "awayPos": 4,
     "date": "16/06/2026",
-    "time": "17:00",
-    "venue": "Gillette Stadium, Boston"
+    "time": "19:00",
+    "venue": "Boston (Foxborough)"
   },
   {
-    "group": "H",
-    "matchId": 45,
-    "homePos": 1,
-    "awayPos": 3,
-    "date": "22/06/2026",
-    "time": "17:00",
-    "venue": "BC Place, Vancouver"
-  },
-  {
-    "group": "H",
-    "matchId": 46,
-    "homePos": 4,
-    "awayPos": 2,
-    "date": "22/06/2026",
-    "time": "21:00",
-    "venue": "NRG Stadium, Houston"
-  },
-  {
-    "group": "H",
-    "matchId": 47,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "28/06/2026",
-    "time": "17:00",
-    "venue": "Gillette Stadium, Boston"
-  },
-  {
-    "group": "H",
-    "matchId": 48,
-    "homePos": 2,
-    "awayPos": 3,
-    "date": "28/06/2026",
-    "time": "17:00",
-    "venue": "Levi's Stadium, San Francisco"
-  },
-  {
-    "group": "I",
-    "matchId": 49,
-    "homePos": 1,
-    "awayPos": 2,
-    "date": "17/06/2026",
-    "time": "14:00",
-    "venue": "Hard Rock Stadium, Miami"
-  },
-  {
-    "group": "I",
-    "matchId": 50,
-    "homePos": 3,
-    "awayPos": 4,
-    "date": "17/06/2026",
-    "time": "17:00",
-    "venue": "Hard Rock Stadium, Miami"
-  },
-  {
-    "group": "I",
     "matchId": 51,
+    "group": "I",
     "homePos": 1,
     "awayPos": 3,
-    "date": "23/06/2026",
-    "time": "17:00",
-    "venue": "Mercedes-Benz Stadium, Atlanta"
+    "date": "22/06/2026",
+    "time": "18:00",
+    "venue": "Philadelphia"
   },
   {
-    "group": "I",
     "matchId": 52,
+    "group": "I",
     "homePos": 4,
     "awayPos": 2,
-    "date": "23/06/2026",
+    "date": "22/06/2026",
     "time": "21:00",
-    "venue": "BC Place, Vancouver"
+    "venue": "New York/New Jersey (East Rutherford)"
   },
   {
-    "group": "I",
     "matchId": 53,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "29/06/2026",
-    "time": "17:00",
-    "venue": "Lumen Field, Seattle"
-  },
-  {
     "group": "I",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "26/06/2026",
+    "time": "16:00",
+    "venue": "Boston (Foxborough)"
+  },
+  {
     "matchId": 54,
+    "group": "I",
     "homePos": 2,
     "awayPos": 3,
-    "date": "29/06/2026",
-    "time": "17:00",
-    "venue": "Hard Rock Stadium, Miami"
+    "date": "26/06/2026",
+    "time": "16:00",
+    "venue": "Toronto"
   },
   {
-    "group": "J",
     "matchId": 55,
+    "group": "J",
     "homePos": 1,
     "awayPos": 2,
-    "date": "17/06/2026",
-    "time": "14:00",
-    "venue": "Estadio Akron, Guadalajara"
+    "date": "16/06/2026",
+    "time": "22:00",
+    "venue": "Kansas City"
   },
   {
-    "group": "J",
     "matchId": 56,
+    "group": "J",
+    "homePos": 3,
+    "awayPos": 4,
+    "date": "16/06/2026",
+    "time": "01:00",
+    "venue": "San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "matchId": 57,
+    "group": "J",
+    "homePos": 1,
+    "awayPos": 3,
+    "date": "22/06/2026",
+    "time": "14:00",
+    "venue": "Dallas (Arlington)"
+  },
+  {
+    "matchId": 58,
+    "group": "J",
+    "homePos": 4,
+    "awayPos": 2,
+    "date": "22/06/2026",
+    "time": "00:00",
+    "venue": "San Francisco Bay Area (Santa Clara)"
+  },
+  {
+    "matchId": 59,
+    "group": "J",
+    "homePos": 2,
+    "awayPos": 3,
+    "date": "27/06/2026",
+    "time": "23:00",
+    "venue": "Kansas City"
+  },
+  {
+    "matchId": 60,
+    "group": "J",
+    "homePos": 4,
+    "awayPos": 1,
+    "date": "27/06/2026",
+    "time": "23:00",
+    "venue": "Dallas (Arlington)"
+  },
+  {
+    "matchId": 61,
+    "group": "K",
+    "homePos": 1,
+    "awayPos": 2,
+    "date": "17/06/2026",
+    "time": "14:00",
+    "venue": "Houston"
+  },
+  {
+    "matchId": 62,
+    "group": "K",
     "homePos": 3,
     "awayPos": 4,
     "date": "17/06/2026",
-    "time": "17:00",
-    "venue": "Levi's Stadium, San Francisco"
+    "time": "23:00",
+    "venue": "Mexico City"
   },
   {
-    "group": "J",
-    "matchId": 57,
-    "homePos": 1,
-    "awayPos": 3,
-    "date": "23/06/2026",
-    "time": "17:00",
-    "venue": "Hard Rock Stadium, Miami"
-  },
-  {
-    "group": "J",
-    "matchId": 58,
-    "homePos": 4,
-    "awayPos": 2,
-    "date": "23/06/2026",
-    "time": "21:00",
-    "venue": "Lumen Field, Seattle"
-  },
-  {
-    "group": "J",
-    "matchId": 59,
-    "homePos": 4,
-    "awayPos": 1,
-    "date": "29/06/2026",
-    "time": "17:00",
-    "venue": "MetLife Stadium, NY"
-  },
-  {
-    "group": "J",
-    "matchId": 60,
-    "homePos": 2,
-    "awayPos": 3,
-    "date": "29/06/2026",
-    "time": "17:00",
-    "venue": "Levi's Stadium, San Francisco"
-  },
-  {
-    "group": "K",
-    "matchId": 61,
-    "homePos": 1,
-    "awayPos": 2,
-    "date": "18/06/2026",
-    "time": "14:00",
-    "venue": "NRG Stadium, Houston"
-  },
-  {
-    "group": "K",
-    "matchId": 62,
-    "homePos": 3,
-    "awayPos": 4,
-    "date": "18/06/2026",
-    "time": "17:00",
-    "venue": "Arrowhead Stadium, KC"
-  },
-  {
-    "group": "K",
     "matchId": 63,
+    "group": "K",
     "homePos": 1,
     "awayPos": 3,
-    "date": "24/06/2026",
-    "time": "17:00",
-    "venue": "Estadio BBVA, Monterrey"
+    "date": "23/06/2026",
+    "time": "14:00",
+    "venue": "Houston"
   },
   {
-    "group": "K",
     "matchId": 64,
+    "group": "K",
     "homePos": 4,
     "awayPos": 2,
-    "date": "24/06/2026",
-    "time": "21:00",
-    "venue": "Hard Rock Stadium, Miami"
+    "date": "23/06/2026",
+    "time": "23:00",
+    "venue": "Guadalajara (Zapopan)"
   },
   {
-    "group": "K",
     "matchId": 65,
+    "group": "K",
     "homePos": 4,
     "awayPos": 1,
-    "date": "30/06/2026",
-    "time": "17:00",
-    "venue": "BMO Field, Toronto"
+    "date": "27/06/2026",
+    "time": "20:30",
+    "venue": "Miami (Miami Gardens)"
   },
   {
-    "group": "K",
     "matchId": 66,
+    "group": "K",
     "homePos": 2,
     "awayPos": 3,
-    "date": "30/06/2026",
-    "time": "17:00",
-    "venue": "NRG Stadium, Houston"
+    "date": "27/06/2026",
+    "time": "20:30",
+    "venue": "Atlanta"
   },
   {
-    "group": "L",
     "matchId": 67,
+    "group": "L",
     "homePos": 1,
     "awayPos": 2,
-    "date": "18/06/2026",
-    "time": "14:00",
-    "venue": "Gillette Stadium, Boston"
+    "date": "17/06/2026",
+    "time": "17:00",
+    "venue": "Dallas (Arlington)"
   },
   {
-    "group": "L",
     "matchId": 68,
+    "group": "L",
     "homePos": 3,
     "awayPos": 4,
-    "date": "18/06/2026",
-    "time": "17:00",
-    "venue": "Hard Rock Stadium, Miami"
+    "date": "17/06/2026",
+    "time": "20:00",
+    "venue": "Toronto"
   },
   {
-    "group": "L",
     "matchId": 69,
+    "group": "L",
     "homePos": 1,
     "awayPos": 3,
-    "date": "24/06/2026",
+    "date": "23/06/2026",
     "time": "17:00",
-    "venue": "Mercedes-Benz Stadium, Atlanta"
+    "venue": "Boston (Foxborough)"
   },
   {
-    "group": "L",
     "matchId": 70,
+    "group": "L",
     "homePos": 4,
     "awayPos": 2,
-    "date": "24/06/2026",
-    "time": "21:00",
-    "venue": "Estadio BBVA, Monterrey"
+    "date": "23/06/2026",
+    "time": "20:00",
+    "venue": "Toronto"
   },
   {
-    "group": "L",
     "matchId": 71,
+    "group": "L",
     "homePos": 4,
     "awayPos": 1,
-    "date": "30/06/2026",
-    "time": "17:00",
-    "venue": "Estadio Akron, Guadalajara"
+    "date": "27/06/2026",
+    "time": "18:00",
+    "venue": "New York/New Jersey (East Rutherford)"
   },
   {
-    "group": "L",
     "matchId": 72,
+    "group": "L",
     "homePos": 2,
     "awayPos": 3,
-    "date": "30/06/2026",
-    "time": "17:00",
-    "venue": "BC Place, Vancouver"
+    "date": "27/06/2026",
+    "time": "18:00",
+    "venue": "Philadelphia"
   }
 ];
