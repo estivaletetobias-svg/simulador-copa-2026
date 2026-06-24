@@ -7,17 +7,18 @@ export type Team = {
 
 export type MatchStatus = 'SCHEDULED' | 'IN_PROGRESS' | 'FINISHED';
 
-export type Match = {
+export interface Match {
   id: string;
-  homeTeamId: string;
-  awayTeamId: string;
+  homeTeamId: string | null;
+  awayTeamId: string | null;
   homeScore: number | null;
   awayScore: number | null;
-  status: MatchStatus;
-  date: string;
-  stadium: string;
-  group?: string; // If it's a group stage match
+  status: 'SCHEDULED' | 'IN_PROGRESS' | 'FINISHED';
+  group?: string; // Only for group stage
   phase: 'GROUP' | 'ROUND_OF_32' | 'ROUND_OF_16' | 'QUARTER_FINALS' | 'SEMI_FINALS' | 'FINAL' | 'THIRD_PLACE';
+  date?: string; // e.g. "15/06/2026"
+  time?: string; // e.g. "16:00"
+  venue?: string; // e.g. "MetLife Stadium, NY"
 };
 
 export type GroupStanding = {

@@ -28,6 +28,8 @@ export function calculateGroupStandings(teams: Team[], matches: Match[], group: 
   });
 
   groupMatches.forEach(m => {
+    if (!m.homeTeamId || !m.awayTeamId) return;
+    
     const home = standings[m.homeTeamId];
     const away = standings[m.awayTeamId];
 
@@ -111,6 +113,9 @@ export function generateRoundOf32(teams: Team[], matches: Match[]): Match[] {
   };
 
   let idCounter = 1;
+  const venues = ['MetLife Stadium', 'SoFi Stadium', 'AT&T Stadium', 'Azteca', 'Hard Rock Stadium'];
+  const times = ['14:00', '16:00', '19:00', '21:00'];
+  
   const createMatch = (homeId: string, awayId: string): Match => ({
     id: `ko_32_${idCounter++}`,
     homeTeamId: homeId,
@@ -118,8 +123,9 @@ export function generateRoundOf32(teams: Team[], matches: Match[]): Match[] {
     homeScore: null,
     awayScore: null,
     status: 'SCHEDULED',
-    date: '',
-    stadium: 'Mata-Mata',
+    date: `28/06/2026`,
+    time: times[Math.floor(Math.random() * times.length)],
+    venue: venues[Math.floor(Math.random() * venues.length)],
     phase: 'ROUND_OF_32'
   });
 
@@ -154,16 +160,24 @@ export function generateNextRound(prevRoundMatches: Match[], nextPhaseName: Matc
     const m1 = prevRoundMatches[i];
     const m2 = prevRoundMatches[i + 1];
 
-    let winner1 = '';
+    let winner1: string | null = null;
     if (m1 && m1.homeScore !== null && m1.awayScore !== null) {
       // Empates no mata-mata precisarão ser evitados pela UI ou considerados como o primeiro no if
-      winner1 = m1.homeScore > m1.awayScore ? m1.homeTeamId : (m1.awayScore > m1.homeScore ? m1.awayTeamId : '');
+      winner1 = m1.homeScore > m1.awayScore ? m1.homeTeamId : (m1.awayScore > m1.homeScore ? m1.awayTeamId : null);
     }
     
-    let winner2 = '';
+    let winner2: string | null = null;
     if (m2 && m2.homeScore !== null && m2.awayScore !== null) {
-      winner2 = m2.homeScore > m2.awayScore ? m2.homeTeamId : (m2.awayScore > m2.homeScore ? m2.awayTeamId : '');
+      winner2 = m2.homeScore > m2.awayScore ? m2.homeTeamId : (m2.awayScore > m2.homeScore ? m2.awayTeamId : null);
     }
+
+    const venues = ['MetLife Stadium', 'SoFi Stadium', 'AT&T Stadium', 'Azteca', 'Hard Rock Stadium'];
+    const times = ['14:00', '16:00', '19:00', '21:00'];
+    
+    let date = '04/07/2026';
+    if (nextPhaseName === 'QUARTER_FINALS') date = '09/07/2026';
+    if (nextPhaseName === 'SEMI_FINALS') date = '14/07/2026';
+    if (nextPhaseName === 'FINAL') date = '19/07/2026';
 
     nextRoundMatches.push({
       id: `ko_${nextPhaseName}_${startId++}`,
@@ -172,8 +186,9 @@ export function generateNextRound(prevRoundMatches: Match[], nextPhaseName: Matc
       homeScore: null,
       awayScore: null,
       status: 'SCHEDULED',
-      date: '',
-      stadium: 'Mata-Mata',
+      date: date,
+      time: nextPhaseName === 'FINAL' ? '17:00' : times[Math.floor(Math.random() * times.length)],
+      venue: nextPhaseName === 'FINAL' ? 'MetLife Stadium, NY' : venues[Math.floor(Math.random() * venues.length)],
       phase: nextPhaseName
     });
   }

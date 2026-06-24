@@ -25,6 +25,17 @@ export default function KnockoutBracket({ teams, matches, onScoreChange }: Props
     return (
       <div key={match.id} className={`match-card ${isFinished ? 'finished' : ''}`}>
         
+        {/* Match Info (Venue, Date, Time) */}
+        {(match.venue || match.date || match.time) && (
+          <div style={{ fontSize: '10px', color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: '8px', letterSpacing: '0.05em' }}>
+            {match.venue && <div>📍 {match.venue}</div>}
+            <div style={{ marginTop: '2px' }}>
+              {match.date && <span>📅 {match.date}</span>}
+              {match.time && <span style={{ marginLeft: '4px' }}>às {match.time} (BRT)</span>}
+            </div>
+          </div>
+        )}
+
         {/* Home Team */}
         <div className={`match-team-row ${homeWon ? 'winner' : ''}`}>
           <div className="match-team-info">

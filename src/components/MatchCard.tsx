@@ -24,8 +24,19 @@ export default function MatchCard({ match, homeTeam, awayTeam, onScoreChange }: 
   };
 
   return (
-    <div className="glass-panel" style={{ padding: '16px', marginBottom: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      {/* Home Team */}
+    <div className="glass-panel" style={{ padding: '16px', marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      
+      {/* Match Info (Venue, Date, Time) */}
+      {(match.venue || match.date || match.time) && (
+        <div style={{ fontSize: '12px', color: 'var(--color-text-secondary)', textAlign: 'center', letterSpacing: '0.05em' }}>
+          {match.venue && <span>📍 {match.venue}</span>}
+          {match.date && <span style={{ marginLeft: '12px' }}>📅 {match.date}</span>}
+          {match.time && <span style={{ marginLeft: '6px' }}>às {match.time} (BRT)</span>}
+        </div>
+      )}
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        {/* Home Team */}
       <div style={{ display: 'flex', alignItems: 'center', width: '35%', justifyContent: 'flex-end', gap: '12px' }}>
         <span style={{ fontWeight: '600' }}>{homeTeam.name}</span>
         <img src={homeTeam.flagUrl} alt={`Bandeira ${homeTeam.name}`} width={32} height={24} style={{ borderRadius: '4px' }} />
@@ -59,6 +70,7 @@ export default function MatchCard({ match, homeTeam, awayTeam, onScoreChange }: 
         <img src={awayTeam.flagUrl} alt={`Bandeira ${awayTeam.name}`} width={32} height={24} style={{ borderRadius: '4px' }} />
         <span style={{ fontWeight: '600' }}>{awayTeam.name}</span>
       </div>
+    </div>
     </div>
   );
 }
