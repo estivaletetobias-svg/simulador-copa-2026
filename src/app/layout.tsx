@@ -18,6 +18,21 @@ export const metadata: Metadata = {
     title: 'Simulador Copa do Mundo 2026',
     description: 'Faça suas previsões, simule resultados e descubra quem vai ser o Campeão da Copa de 2026!',
     type: 'website',
+    url: 'https://simulador-copa-2026.vercel.app',
+    images: [
+      {
+        url: 'https://simulador-copa-2026.vercel.app/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Simulador Copa do Mundo 2026',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Simulador Copa do Mundo 2026',
+    description: 'Faça suas previsões, simule resultados e descubra quem vai ser o Campeão da Copa de 2026!',
+    images: ['https://simulador-copa-2026.vercel.app/opengraph-image.png'],
   }
 };
 
