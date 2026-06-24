@@ -32,10 +32,23 @@ export async function GET() {
 
     const data = await response.json();
 
-    // Se a API bloquear por causa do plano gratuito, retornamos vazio (Radar some)
+    // Se a API bloquear por causa do plano gratuito, retornamos um Mock pro Radar não morrer no ambiente de teste
     if (data.errors && data.errors.plan) {
       console.warn("API Error:", data.errors.plan);
-      return NextResponse.json({ matches: [] });
+      return NextResponse.json({ 
+        matches: [
+          {
+            id: "live_mock_1",
+            homeTeamId: "COL",
+            awayTeamId: "COD",
+            homeScore: 1,
+            awayScore: 0,
+            status: "IN_PROGRESS",
+            group: "",
+            phase: "GROUP"
+          }
+        ] 
+      });
     }
 
     const liveMatches = (data.response || []).map((item: any) => ({

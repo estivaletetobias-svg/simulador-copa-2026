@@ -98,28 +98,38 @@ export default function KnockoutBracket({ teams, matches, onScoreChange }: Props
         
         <div className="bracket-column">
           <h3 className="bracket-col-title">16-Avos de Final</h3>
-          {matches.filter(m => m.phase === 'ROUND_OF_32').map(renderMatch)}
+          {matches.filter(m => m.phase === 'ROUND_OF_32').map(m => (
+            <div key={m.id} className="bracket-cell">{renderMatch(m)}</div>
+          ))}
         </div>
 
         <div className="bracket-column">
           <h3 className="bracket-col-title">Oitavas de Final</h3>
-          {matches.filter(m => m.phase === 'ROUND_OF_16').map(renderMatch)}
+          {matches.filter(m => m.phase === 'ROUND_OF_16').map(m => (
+            <div key={m.id} className="bracket-cell">{renderMatch(m)}</div>
+          ))}
         </div>
 
         <div className="bracket-column">
           <h3 className="bracket-col-title">Quartas de Final</h3>
-          {matches.filter(m => m.phase === 'QUARTER_FINALS').map(renderMatch)}
+          {matches.filter(m => m.phase === 'QUARTER_FINALS').map(m => (
+            <div key={m.id} className="bracket-cell">{renderMatch(m)}</div>
+          ))}
         </div>
 
         <div className="bracket-column">
           <h3 className="bracket-col-title" style={{ color: 'var(--color-yellow)' }}>Semifinais</h3>
-          {matches.filter(m => m.phase === 'SEMI_FINALS').map(renderMatch)}
+          {matches.filter(m => m.phase === 'SEMI_FINALS').map(m => (
+            <div key={m.id} className="bracket-cell">{renderMatch(m)}</div>
+          ))}
         </div>
 
-        <div className="bracket-column" style={{ justifyContent: 'center' }}>
+        <div className="bracket-column">
           <div className="final-glow"></div>
           <h3 className="final-title">GRANDE FINAL</h3>
-          {matches.filter(m => m.phase === 'FINAL').map(renderMatch)}
+          {matches.filter(m => m.phase === 'FINAL').map(m => (
+            <div key={m.id} className="bracket-cell">{renderMatch(m)}</div>
+          ))}
         </div>
 
       </div>
